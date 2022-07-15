@@ -1,0 +1,106 @@
+.sign-up{
+    color: #E1E1E6;
+    width: 85%;
+    margin: auto;
+}
+.sign-up__header {
+    display: flex;   
+    align-items: center;
+    margin-top: 5px;
+
+}
+.sign-up__back-btn {
+
+    font-size: 32px;
+    border-radius: 10px;
+    border:1px solid #8C8A93;
+    padding: 15px;
+    margin-right: 10px;
+}
+.sign-up__header h2 {
+    font-size: 32px;
+    font-weight: 300;
+    color: #8C8A93;
+}
+.create-account {
+    margin-top: 0px;
+    font-size:32px;
+}
+.input-wrapper {
+    box-sizing: border-box;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    color: #8C8A93;
+    background-color: #2D2D2F;
+    width: 100%;
+    cursor: text;
+    font-size: 24px;
+}
+.input-wrapper input {
+    margin-left: 10px;
+    font-size: 20px;
+
+    background-color: transparent;
+    color: whitesmoke;
+    border: 0;
+}
+
+.input-wrapper input::placeholder {
+color: #8C8A93;
+}
+
+.sign-up__button {
+    background-color: #EA4545;
+    margin-top: 15px;
+    color: whitesmoke;
+    font-size: 25px;
+    font-weight: bold;
+    border: transparent;
+    border-radius: 10px;
+    padding: 7px;
+    width: 100%;
+}
+
+.sing-up-divisor {
+   display: flex;
+    background-color: red;
+   align-items: center;
+   width: 100%;
+}
+.d-right{
+    float:right; 
+    width: 47%;
+}
+.d-left {
+    float: left; 
+    width: 47%;
+}
+.d-or {
+    font-size: 18px;
+    border-radius: 10px;
+    border: 2px solid white;
+    padding: 10px;
+}
+.divisor {
+    margin: 20px auto;
+    align-items: center;
+    display: flex;
+}
+.sign-up__third-parties {
+    display: flex;
+    flex-direction: column;
+}
+.sign-up__third-party {
+    background-color: transparent;
+    margin:10px auto;
+    border: 1px solid #8C8A93;
+    border-radius: 10px;
+    color: #E1E1E6;
+    padding: 10px;
+    font-size: 18px;
+    width: 100%;
+}
