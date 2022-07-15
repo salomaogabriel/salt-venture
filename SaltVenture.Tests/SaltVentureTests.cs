@@ -2,7 +2,7 @@ using Xunit;
 
 namespace SaltVenture.Tests;
 
-public class UnitTest1
+public class SaltVentureTests
 {
     [Fact]
     public void Test1()
