@@ -1,32 +1,37 @@
-.sign-up{
+.sign-up {
     color: #E1E1E6;
     width: 85%;
     margin: auto;
 }
+
 .sign-up__header {
-    display: flex;   
+    display: flex;
     align-items: center;
     margin-top: 5px;
 
 }
+
 .sign-up__back-btn {
 
     font-size: 24px;
     font-weight: 100;
     border-radius: 10px;
-    border:1px solid #8C8A93;
+    border: 1px solid #8C8A93;
     padding: 10px;
     margin-right: 10px;
 }
+
 .sign-up__header h2 {
     font-size: 32px;
     font-weight: 300;
     color: #8C8A93;
 }
+
 .create-account {
     margin-top: 0px;
-    font-size:32px;
+    font-size: 32px;
 }
+
 .input-wrapper {
     box-sizing: border-box;
     padding: 10px;
@@ -42,6 +47,7 @@
     font-size: 24px;
     border: 2px solid transparent;
 }
+
 .input-wrapper input {
     margin-left: 10px;
     font-size: 20px;
@@ -50,14 +56,17 @@
     color: whitesmoke;
     border: 0;
 }
+
 .input-wrapper input:focus {
     outline: none;
 }
+
 .input-wrapper:focus-within {
     border-color: #EA4545;
 }
+
 .input-wrapper input::placeholder {
-color: #8C8A93;
+    color: #8C8A93;
 }
 
 .sign-up__button {
@@ -72,38 +81,49 @@ color: #8C8A93;
     width: 100%;
 }
 
+.sign-up__button:hover {
+    opacity: 90%;
+    cursor: pointer;
+}
+
 .sing-up-divisor {
-   display: flex;
+    display: flex;
     background-color: red;
-   align-items: center;
-   width: 100%;
+    align-items: center;
+    width: 100%;
 }
-.d-right{
-    float:right; 
+
+.d-right {
+    float: right;
     width: 47%;
 }
+
 .d-left {
-    float: left; 
+    float: left;
     width: 47%;
 }
+
 .d-or {
     font-size: 18px;
     border-radius: 10px;
     border: 2px solid white;
     padding: 10px;
 }
+
 .divisor {
     margin: 20px auto;
     align-items: center;
     display: flex;
 }
+
 .sign-up__third-parties {
     display: flex;
     flex-direction: column;
 }
+
 .sign-up__third-party {
     background-color: transparent;
-    margin:10px auto;
+    margin: 10px auto;
     border: 1px solid #8C8A93;
     border-radius: 10px;
     color: #E1E1E6;
@@ -114,9 +134,11 @@ color: #8C8A93;
     justify-content: center;
     width: 100%;
 }
+
 .sign-up__third-party svg {
-margin-right: 5px;
+    margin-right: 5px;
 }
+
 .error__input {
     border-color: red;
     margin-bottom: 0;
@@ -125,9 +147,31 @@ margin-right: 5px;
 .error__input:focus-within {
     border-color: red;
 }
+
 .error__msg {
     color: #EA4545;
     margin-left: 10px;
     margin-bottom: 20px;
     margin-top: 5px;
+}
+
+.circle-animation {
+    margin: auto;
+    padding: 10px;
+    border-radius: 50%;
+    width: min-content;
+    border: 5px solid transparent;
+    border-bottom-color: #2979FF;
+    animation: circle 1s infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes circle {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }

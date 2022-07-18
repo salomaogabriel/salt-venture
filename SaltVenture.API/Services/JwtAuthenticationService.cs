@@ -30,7 +30,7 @@ public class JwtAuthenticationService : IJwtAuthenticationService
                     new Claim(ClaimTypes.Role, "user"),
                     new Claim(ClaimTypes.UserData, user.Id.ToString()),
             }),
-            Expires = DateTime.UtcNow.AddHours(1),
+            Expires = DateTime.UtcNow.AddHours(48),
             SigningCredentials = new SigningCredentials(
                 new SymmetricSecurityKey(key),
                 SecurityAlgorithms.HmacSha256Signature)
