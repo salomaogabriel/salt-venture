@@ -37,7 +37,9 @@ public class UsersController : ControllerBase
             Username = user.Username,
             Email = user.Email,
             Balance = user.Balance,
-            Token = token
+            Token = token,
+            Id = user.Id
+
 
         };
         return Ok(response);
@@ -68,7 +70,8 @@ public class UsersController : ControllerBase
             Username = user.Username,
             Email = user.Email,
             Balance = user.Balance,
-            Token = token
+            Token = token,
+            Id = user.Id
 
         };
         return Ok(response);
@@ -98,7 +101,6 @@ public class UsersController : ControllerBase
     [HttpDelete]
     public async Task<IActionResult> DeleteUser()
     {
-
         return NoContent();
     }
 
