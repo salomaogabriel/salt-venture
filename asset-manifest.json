@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/salt-venture/static/css/main.f26e0153.css",
-    "main.js": "/salt-venture/static/js/main.31441231.js",
+    "main.css": "/salt-venture/static/css/main.c043ada6.css",
+    "main.js": "/salt-venture/static/js/main.2f725c84.js",
     "static/js/787.c4e7f8f9.chunk.js": "/salt-venture/static/js/787.c4e7f8f9.chunk.js",
     "index.html": "/salt-venture/index.html",
-    "main.f26e0153.css.map": "/salt-venture/static/css/main.f26e0153.css.map",
-    "main.31441231.js.map": "/salt-venture/static/js/main.31441231.js.map",
+    "main.c043ada6.css.map": "/salt-venture/static/css/main.c043ada6.css.map",
+    "main.2f725c84.js.map": "/salt-venture/static/js/main.2f725c84.js.map",
     "787.c4e7f8f9.chunk.js.map": "/salt-venture/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f26e0153.css",
-    "static/js/main.31441231.js"
+    "static/css/main.c043ada6.css",
+    "static/js/main.2f725c84.js"
   ]
 }
