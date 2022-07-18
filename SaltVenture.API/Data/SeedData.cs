@@ -8,12 +8,13 @@ public static class SeedData
 {
     public static void Initialize(IServiceProvider serviceProvider)
     {
+        return;
         using (var context = new SaltVentureDbContext(
             serviceProvider.GetRequiredService<
             DbContextOptions<SaltVentureDbContext>>()))
         {
             // Look to the Games table to any games
-            context.Games.RemoveRange(context.Games);
+            context.Games!.RemoveRange(context.Games);
             var crash = new Game()
             {
                 Name = "Crash",
