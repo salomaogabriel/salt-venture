@@ -11,10 +11,11 @@
 }
 .sign-up__back-btn {
 
-    font-size: 32px;
+    font-size: 24px;
+    font-weight: 100;
     border-radius: 10px;
     border:1px solid #8C8A93;
-    padding: 15px;
+    padding: 10px;
     margin-right: 10px;
 }
 .sign-up__header h2 {
@@ -39,16 +40,22 @@
     width: 100%;
     cursor: text;
     font-size: 24px;
+    border: 2px solid transparent;
 }
 .input-wrapper input {
     margin-left: 10px;
     font-size: 20px;
-
+    width: 100%;
     background-color: transparent;
     color: whitesmoke;
     border: 0;
 }
-
+.input-wrapper input:focus {
+    outline: none;
+}
+.input-wrapper:focus-within {
+    border-color: #EA4545;
+}
 .input-wrapper input::placeholder {
 color: #8C8A93;
 }
@@ -102,5 +109,25 @@ color: #8C8A93;
     color: #E1E1E6;
     padding: 10px;
     font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
+}
+.sign-up__third-party svg {
+margin-right: 5px;
+}
+.error__input {
+    border-color: red;
+    margin-bottom: 0;
+}
+
+.error__input:focus-within {
+    border-color: red;
+}
+.error__msg {
+    color: #EA4545;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    margin-top: 5px;
 }
