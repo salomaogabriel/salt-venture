@@ -113,7 +113,7 @@ function SignIn({updateUser}:Props) {
                 <BsArrowLeft className='sign-up__back-btn' onClick={navigteToSignUp} />
                 <h2>Log In</h2>
             </div>
-            <h1 className='create-account'>Welcome<br />Back</h1>
+            <h1 className='create-account'>Welcome<br />Back!</h1>
             <form onSubmit={sendSignIn}>
                 <label htmlFor="email" className='sign-up__label'>Email
                     <div className={"input-wrapper " + (error.Email !== "" && error.Email !== undefined ? "error__input" : "")}>

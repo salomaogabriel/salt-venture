@@ -1,0 +1,99 @@
+.rank-list-item {
+    display: flex;
+    justify-content: left;
+    background-color: #2D2D2F;
+    margin: 20px;
+    border-radius: 10px;
+    padding: 2px;
+    text-decoration: none;
+}
+
+.rank-list-item-info {
+    padding-left: 10px;
+}
+
+.rank-list-item-img {
+    color: #E1E1E6;
+    background-color: #3D3D3F;
+    margin: auto 0;
+    font-size: 32px;
+    margin-left: 20px;
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #EA4545;
+}
+
+.rank-list {
+    display: grid;
+}
+
+.rank-title {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    color: #e0dbdb;
+}
+
+.rank-list-item__username {
+    font-size: 18px;
+    color: #E1E1E6;
+    margin-bottom: 0;
+}
+
+.rank-list-item__balance {
+    margin-top: 0;
+    color: #E1E1E6;
+
+}
+
+.rank-title-divider {
+    margin: 20px;
+    color: red;
+}
+
+.rank-divider {
+    margin: 20px;
+    border: none;
+    height: 1px;
+    background-color: #4D4D4F;
+}
+
+.search-bar-rank {
+    display: flex;
+    margin:auto;
+    margin-top: 20px;
+    border-radius: 10px;
+    width: fit-content;
+    padding: 10px;
+    justify-content: center;
+    background-color: #2D2D2F;
+    border: 2px solid transparent;
+    font-size: 24px;
+    color: #EA4545;
+
+}
+.search-bar-rank input {
+    background-color: transparent;
+    border:0;
+    color: #E1E1E6;
+
+}
+.search-bar-rank input::-webkit-search-cancel-button{
+    color: #EA4545;
+
+}
+.search-bar-rank input:focus {
+    outline: none;
+}
+.search-bar-rank:focus-within {
+    border-color: #EA4545;
+}
+
+.no-user {
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin: auto;
+}

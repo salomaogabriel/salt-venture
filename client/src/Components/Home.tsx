@@ -3,7 +3,7 @@ import { useState } from 'react';
 import '../Styles/Home.css';
 import Header from './Header';
 import SearchGames from './SearchGames';
-
+import MenuBar from './MenuBar';
 interface Props {
   user: {
     id: number | undefined,
@@ -37,7 +37,6 @@ function Home({ user }: Props) {
   return (
     <>
     
-      <Header user={user} />
       <div className='home-screen'>
         <div className='homepage-welcome-message'>
           {

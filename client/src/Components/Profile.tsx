@@ -2,6 +2,8 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import Header from './Header';
+import '../Styles/Profile.css';
+import { TbSalt } from 'react-icons/tb';
 
 interface Props {
     user: {
@@ -70,15 +72,12 @@ function Profile({ user }: Props) {
     }
     return (
         <div>
+           
             <div>
-                <Header user={user} />
-            </div>
-            <div>
-                <div>
-                    <p> {userData.email} </p>
-                    <p>{userData.username}</p>
-                    <p>{userData.balance}</p>
-
+                <div className='profile-list'>
+                    <p className='profile-list-item'>{userData.email} </p>
+                    <p className='profile-list-item'>{userData.username}</p>
+                    <p className='profile-list-item'> <TbSalt />{userData.balance}</p>
                 </div>
             </div>
         </div>
