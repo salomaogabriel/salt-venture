@@ -87,4 +87,11 @@ public class UsersRepository : IUsersRepository
             // compare both hashes
             return String.CompareOrdinal(passwordAndHash[0], hashOfpasswordToCheck) == 0;
         }
+
+    public async Task<User> GetUserWithId(int id)
+    {
+        return await _context.Users
+        .Include(u => u.Bets)
+        .FirstOrDefaultAsync(u => u.Id == id);
+    }
 }

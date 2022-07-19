@@ -154,18 +154,52 @@
     margin-bottom: 20px;
     margin-top: 5px;
 }
-
-.circle-animation {
-    margin: auto;
-    padding: 10px;
-    border-radius: 50%;
-    width: min-content;
-    border: 5px solid transparent;
-    border-bottom-color: #2979FF;
-    animation: circle 1s infinite;
-    animation-timing-function: linear;
+.sign-up__link {
+    width: fit-content;
+    margin: 20px auto;
+}
+.sign-up__link a {
+    color: #EA4545;
 }
 
+.wave-animation {
+    display: flex;
+    width: 50px;
+    align-items: center;
+    align-content: center;
+    margin: 0 auto;
+    height: 25px;
+}
+
+.wave {
+    background-color: whitesmoke;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 3px;
+    padding-right: 3px;
+    width: 0;
+    margin: 3px;
+    animation: wave 2s infinite;
+    animation-delay: var(--w);
+}
+
+@keyframes wave {
+    0% {
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+
+    50% {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    100% {
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+}
+/* 
 @keyframes circle {
     0% {
         transform: rotate(0deg);
@@ -174,4 +208,4 @@
     100% {
         transform: rotate(360deg);
     }
-}
+} */
