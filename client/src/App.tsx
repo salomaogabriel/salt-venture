@@ -58,6 +58,15 @@ function App() {
         <Route path="*" element={<Header user={user} logOut={logOut} />}></Route>
       </Routes>
 
+{
+  user.id == undefined ? 
+  <Routes>
+  <Route path="/salt-venture/SignUp" element={<SignUp updateUser={updateUser} />}></Route>
+  <Route path="/salt-venture/Login" element={<SignIn updateUser={updateUser} />}></Route>
+  <Route path="*" element={<Home user={user} />}></Route>
+</Routes>
+  :
+
       <Routes>
         <Route path="/salt-venture/SignUp" element={<SignUp updateUser={updateUser} />}></Route>
         <Route path="/salt-venture/Login" element={<SignIn updateUser={updateUser} />}></Route>
@@ -67,6 +76,7 @@ function App() {
         <Route path="/salt-venture/settings" element={<ProfileSettings />}></Route>
         <Route path="*" element={<Home user={user} />}></Route>
       </Routes>
+}
     </div>
   );
 }

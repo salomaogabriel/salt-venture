@@ -79,6 +79,7 @@ const MenuBar = ({ user, logOut }: Props) => {
             <p> {user.username} </p>
             <p className='dropdown-email'> {user.email} </p>
           </div>
+          <div className='header-links'>
           <hr className='log-out-divider' />
           {sidebarNavItems.map((item) => {
             return (
@@ -92,6 +93,7 @@ const MenuBar = ({ user, logOut }: Props) => {
             <BiLogOut className="log-out-icon" />
             <div className='log-out-text'>Log out</div>
           </div>
+        </div>
         </div>
         <div className="full-screen-cover"></div>
       </>

@@ -4,5 +4,45 @@
 }
 
 .profile-list-item {
-    margin-top: 10öx;
+    display: flex;
+    margin-top: 10px;
+    background-color: #2D2D2F;
+    padding: 20px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-user {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-bottom: 15px;
+}
+
+.profile-image {
+    display: flex;
+    border: 2px solid #2D2D2F;
+    padding: 10px;
+    border-radius: 10px;
+    margin: auto;
+    background-color: #2D2D2F;
+    color: #EA4545;
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.chart-title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.profile-graph {
+    box-sizing: border-box;
+    width: 85%;
+    margin: auto;
+    border-radius: 10px;
+    background-color: #2D2D2F;
+    padding: 10px;
 }
