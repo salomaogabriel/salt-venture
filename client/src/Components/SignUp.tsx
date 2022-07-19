@@ -31,10 +31,12 @@ function SignUp({updateUser}:Props) {
    
     const navigate = useNavigate();
     const navigteToSignIn = () => {
-        navigate('/salt-venture/login');
+        navigate('/salt-venture/');
     };
     const sendSignUp = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
+
         var myHeaders = new Headers();
         setError({ Password: undefined, Username: undefined, Email: undefined })
 
@@ -59,6 +61,8 @@ function SignUp({updateUser}:Props) {
             const deserializedJSON = await response.json();
             console.log(deserializedJSON);
             updateUser(deserializedJSON);
+        setIsLoading(false);
+
             navigate('/salt-venture/');
         } catch (err) {
             let errors = JSON.parse(err.message);
@@ -67,10 +71,14 @@ function SignUp({updateUser}:Props) {
             }
             else {
                 errors = errors.errors;
-                console.log(errors)
-                setError({ Password: errors.Password[0], Username: errors.Username[0], Email: errors.Email[0] })
+                let passwordError = errors.Password ? errors.Password[0] : "";
+                let emailError = errors.Email ? errors.Email[0] : "";
+                let usernameError = errors.Username ? errors.Username[0] : "";
+                setError({ Password: passwordError, Username: usernameError, Email: emailError })
 
             }
+        setIsLoading(false);
+
         }
 
         // setEmailText('');
@@ -109,7 +117,17 @@ function SignUp({updateUser}:Props) {
                     </div>
                     <p className='error__msg'> {error.Password}</p>
                 </label>
-                <button className='sign-up__button' >Sign Up</button>
+                <button className='sign-up__button' >{
+                    !isLoading ?
+                    <>Sig Up</>
+                    :
+                    <div className="wave-animation">
+                            <div className="wave" style={{"--w":"0s"} as React.CSSProperties } ></div>
+                            <div className="wave" style={{"--w":"0.4s"} as React.CSSProperties }></div>
+                            <div className="wave" style={{"--w":"0.8s"} as React.CSSProperties }></div>
+                            <div className="wave" style={{"--w":"1.2s"} as React.CSSProperties }></div>
+                        </div>
+                }</button>
             </form>
             <div className="divisor">
                 <div className='d-right'><hr />  </div>
@@ -124,6 +142,8 @@ function SignUp({updateUser}:Props) {
                     <FaApple /> Sign up with Apple
                 </button>
             </div>
+            <p className='sign-up__link'>Already have an account? <Link to="/salt-venture/login">Sign In!</Link></p>
+
         </div>
     );
 }

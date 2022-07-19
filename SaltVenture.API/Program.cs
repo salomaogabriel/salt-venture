@@ -13,7 +13,6 @@ var builder = WebApplication.CreateBuilder(args);
 var connString = builder.Configuration.GetConnectionString("SaltVentureContext");
 connString = connString.Replace("<username>", builder.Configuration["DB_USERNAME"]);
 connString = connString.Replace("<password>", builder.Configuration["DB_PASSWORD"]);
-System.Console.WriteLine(connString);
 builder.Services.AddDbContext<SaltVentureDbContext>(options =>
     options.UseSqlServer(connString));
 builder.Services.AddControllers();

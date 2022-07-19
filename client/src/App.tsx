@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router';
 import SignUp from './Components/SignUp';
 import SignIn from './Components/SignIn';
 import Home from './Components/Home';
+import Profile from './Components/Profile';
 
 interface User {
   id: number | undefined,
@@ -43,6 +44,8 @@ useEffect(() => {
       <Routes> 
           <Route path="/salt-venture/SignUp" element={<SignUp updateUser = {updateUser}/>}></Route> 
           <Route path="/salt-venture/Login" element={<SignIn updateUser = {updateUser}/>}></Route> 
+          <Route path="/salt-venture/profile/:id" element={<Profile user= {user}/>}></Route> 
+          <Route path="/salt-venture/profile" element={<Profile user= {user}/>}></Route> 
           <Route path="*" element={<Home user={user}/>}></Route> 
         </Routes> 
     </div>

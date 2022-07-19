@@ -38,7 +38,12 @@ function Home({ user }: Props) {
       <Header user={user} />
       <div className='home-screen'>
         <div className='homepage-welcome-message'>
-          Hello,<span> {user.username} </span>
+          {
+            user.id !== undefined ?
+              <>Hello, <span> {user.username} </span></>
+              :
+              <></>
+          }
         </div>
 
         <p> What do you want to Play?</p>
@@ -47,7 +52,9 @@ function Home({ user }: Props) {
          handleChange={handleChange}
         searchList={searchList} 
         /> */}
+
         <button type="button" onClick={handleClick}>Search Games</button>
+
         <br />
         {(searchList.length === 0)
           ? null
