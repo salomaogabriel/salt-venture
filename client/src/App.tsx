@@ -41,6 +41,7 @@ useEffect(() => {
 
   return (
     <div className="App">
+      
       <Routes> 
           <Route path="/salt-venture/SignUp" element={<SignUp updateUser = {updateUser}/>}></Route> 
           <Route path="/salt-venture/Login" element={<SignIn updateUser = {updateUser}/>}></Route> 

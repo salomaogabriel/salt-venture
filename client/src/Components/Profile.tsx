@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import Header from './Header';
 
@@ -17,14 +17,24 @@ interface userData {
     id: number | undefined,
     email: string | undefined,
     username: string | undefined,
-    balance: number | undefined
+    balance: number | undefined,
+    bets: any | undefined
 }
 
 function Profile({ user }: Props) {
 
     const { id } = useParams();
-    const [userData, setUserData] = useState<userData>({ id: undefined, email: undefined, username: undefined, balance: undefined });
+    useEffect(() => {
+        searchUser();
+    }, [user])
+
+    const [userData, setUserData] = useState<userData>({ id: undefined, email: undefined, username: undefined, balance: undefined, bets: undefined });
     const searchUser = async () => {
+        let idToSearch = id;
+        if (user.id == undefined) return;
+        if (idToSearch == undefined) {
+            idToSearch = user.id.toString();
+        }
         const requestSettings = {
             method: 'GET',
             headers: {
@@ -33,21 +43,23 @@ function Profile({ user }: Props) {
             }
         };
         try {
-
-
-            const response = await fetch(`https://saltventure.azurewebsites.net/api/users/${id}`, requestSettings)
+            const response = await fetch(`https://saltventure.azurewebsites.net/api/users/${idToSearch}`, requestSettings)
             if (!response.ok) {
                 throw new Error(JSON.stringify(await response.json()));
             }
-            console.log(await response.json());
-            // const deserializedJSON = await response.json();
-            // console.log(deserializedJSON);
-            // setUserData(deserializedJSON);
+            const deserializedJSON = await response.json();
+            console.log(deserializedJSON);
+            setUserData({
+                id: deserializedJSON.id,
+                username: deserializedJSON.username,
+                email: deserializedJSON.email,
+                balance: deserializedJSON.balance,
+                bets: deserializedJSON.bets
+            });
         }
         catch (err) {
             console.log(err);
         }
-
     }
     if (user.id == undefined) {
         return (
@@ -63,11 +75,11 @@ function Profile({ user }: Props) {
             </div>
             <div>
                 <div>
-                    Hello {userData.email}
-                    {userData.username}
-                    {userData.balance}
+                    <p> {userData.email} </p>
+                    <p>{userData.username}</p>
+                    <p>{userData.balance}</p>
+
                 </div>
-                <button onClick={searchUser}>Search User</button>
             </div>
         </div>
     );

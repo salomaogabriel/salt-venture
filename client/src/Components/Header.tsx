@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import '../Styles/Header.css'
 import { TbSalt } from 'react-icons/tb'
+import MenuBar from './MenuBar';
 import { Squeeze as Hamburger } from 'hamburger-react'
 import { Routes, Route, useNavigate, Link } from 'react-router-dom';
 
@@ -23,6 +24,7 @@ function Header({ user }: Props) {
         <>
             <header className='main-header'>
                 <Hamburger rounded color='#8C8A93' />
+                <MenuBar />
                 <div className='balance'>
                     {user.id !== undefined ?
                         <><TbSalt className='salt-balance__icon' />
