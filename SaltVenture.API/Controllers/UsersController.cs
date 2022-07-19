@@ -82,7 +82,8 @@ public class UsersController : ControllerBase
     {
         var users = await _usersRepository.GetAllWithUsername(username);
         // TODO: Users Response Model.
-        return Ok(users);
+        var response = users.Select(u => new UserRankResponse(u)).ToList();
+        return Ok(response);
     }
 
     [HttpGet("{id}")]
