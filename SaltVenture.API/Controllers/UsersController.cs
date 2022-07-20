@@ -5,6 +5,7 @@ using SaltVenture.API.Services;
 using SaltVenture.API.Models.Errors;
 using SaltVenture.API.Models;
 using SaltVenture.API.Models.Responses;
+using System.Security.Claims;
 
 namespace SaltVenture.API.Controllers;
 
@@ -90,7 +91,7 @@ public class UsersController : ControllerBase
     public async Task<IActionResult> GetUser(int id)
     {
         var user = await _usersRepository.GetUserWithId(id);
-        if(user == null) return NotFound();
+        if (user == null) return NotFound();
 
         var response = new UserProfileResponse()
         {
@@ -106,15 +107,60 @@ public class UsersController : ControllerBase
     }
 
     [HttpPatch("{id}")]
-    public async Task<IActionResult> UpdateUser(UserUpdateRequest request)
+    public async Task<IActionResult> UpdateUser(int id, UserUpdateRequest request)
     {
-        //TODO add update model
-        return Ok();
+        var identity = HttpContext.User.Identity as ClaimsIdentity;
+        // Gets list of claims.
+        IEnumerable<Claim> claim = identity!.Claims;
+
+        // Gets name from claims. Generally it's an email address.
+        var idClaim = claim
+            .Where(x => x.Type == ClaimTypes.UserData)
+            .FirstOrDefault()!.Value;
+
+        if (!int.TryParse(idClaim, out var claimedId)) return Unauthorized();
+        if (claimedId != id) return Unauthorized();
+        var user = await _usersRepository.GetUserWithId(id);
+        if (user == null) return NotFound();
+        var errors = new SignUpError();
+
+        if (_usersRepository.EmailExists(request.Email) && request.Email != "")
+        {
+            errors.AddEmailExistsError(request.Email);
+        }
+        if (_usersRepository.UsernameExists(request.Username) && request.Username != "")
+        {
+            errors.AddUsernameExistsError(request.Username);
+        }
+        if (errors.Errors.Any()) return BadRequest(errors.Errors);
+        user = await _usersRepository.UpdateUser(user, request);
+        var response = new UserProfileResponse()
+        {
+            Id = user.Id,
+            Email = user.Email,
+            Username = user.Username,
+            Balance = user.Balance,
+            Bets = user.Bets,
+
+        };
+
+        return Ok(response);
     }
 
     [HttpDelete]
     public async Task<IActionResult> DeleteUser()
     {
+        var identity = HttpContext.User.Identity as ClaimsIdentity;
+        // Gets list of claims.
+        IEnumerable<Claim> claim = identity!.Claims;
+
+        // Gets name from claims. Generally it's an email address.
+        var idClaim = claim
+            .Where(x => x.Type == ClaimTypes.UserData)
+            .FirstOrDefault()!.Value;
+        if (!int.TryParse(idClaim, out var id)) return Unauthorized();
+
+        await _usersRepository.Delete(id);
         return NoContent();
     }
 

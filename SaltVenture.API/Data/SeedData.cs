@@ -15,7 +15,7 @@ public static class SeedData
         {
             // Look to the Games table to any games
             var game = context.Games.FirstOrDefault();
-            var user = context.Users.FirstOrDefault( u => u.Username.ToLower().Contains("nich"));
+            var user = context.Users.FirstOrDefault( u => u.Username!.ToLower().Contains("nich"));
             var bets = new List<Bet>(){
                 new Bet(){
                     Game = game,
