@@ -12,7 +12,7 @@
 }
 
 .sign-up__back-btn {
-
+    cursor: pointer;
     font-size: 24px;
     font-weight: 100;
     border-radius: 10px;
@@ -91,6 +91,7 @@
     background-color: red;
     align-items: center;
     width: 100%;
+
 }
 
 .d-right {
@@ -111,9 +112,10 @@
 }
 
 .divisor {
+    display: flex;
     margin: 20px auto;
     align-items: center;
-    display: flex;
+    justify-content: center;
 }
 
 .sign-up__third-parties {
@@ -141,23 +143,28 @@
 
 .error__input {
     border-color: red;
+
     margin-bottom: 0;
 }
 
 .error__input:focus-within {
     border-color: red;
+
 }
 
 .error__msg {
     color: #EA4545;
+
     margin-left: 10px;
     margin-bottom: 20px;
     margin-top: 5px;
 }
+
 .sign-up__link {
     width: fit-content;
     margin: 20px auto;
 }
+
 .sign-up__link a {
     color: #EA4545;
 }
@@ -199,13 +206,43 @@
         padding-bottom: 6px;
     }
 }
-/* 
-@keyframes circle {
-    0% {
-        transform: rotate(0deg);
-    }
 
-    100% {
-        transform: rotate(360deg);
-    }
-} */
+.confirmation-message {
+    margin: auto;
+    color: rgba(87, 226, 66, 0.701);
+    text-align: center;
+
+}
+
+.confirmation--signup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    align-items: center;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+}
+
+.back-arrow-confirmation {
+    color: #E1E1E6;
+    margin: 20px;
+}
+
+.sign-in__button--confirmation {
+    border: 0;
+    border-radius: 10px;
+    background-color: #EA4545;
+    color: #E1E1E6;
+    padding: 5px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    min-width: fit-content;
+    width: 300px;
+    padding: 10px;
+    margin: auto;
+    margin-top: 20px;
+}
+.sign-in__button--confirmation:hover {
+    opacity: 90%;
+}

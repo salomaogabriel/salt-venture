@@ -44,7 +44,7 @@ function Chart({labels, data, label, color}) {
             label: label,
             data: data,
             borderWidth: 1,
-            pointRadius: 0,
+            pointRadius: 1,
             borderColor: `#${color}`,
             backgroundColor: `#${color}2f`,
           }

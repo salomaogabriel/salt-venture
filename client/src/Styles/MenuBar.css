@@ -13,7 +13,6 @@ li {
 .sidepanel {
   width: 0;
   position: fixed;
-  z-index: 100;
   height: 100vh;
   top: 0;
   left: 0;
@@ -22,6 +21,8 @@ li {
   transition: 0.5s;
   padding-bottom: 45px;
   padding-top: 60px;
+  z-index: 200;
+
 }
 
 .sidepanel a,
@@ -117,6 +118,6 @@ li {
 }
 
 .log-out:hover {
-  background-color: #ea454524;
+  background-color: #EA454524;
   cursor: pointer;
 }

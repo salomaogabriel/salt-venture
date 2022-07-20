@@ -28,7 +28,7 @@ function Header({ user, logOut }: Props) {
                 <MenuBar user = {user} logOut= {logOut}/>
                 <div className='balance'>
                     {user.id !== undefined ?
-                        <><TbSalt className='salt-balance__icon' />
+                        <><TbSalt className='salt-balance__icon salt-shaker' />
                             {user.balance}</>
                         : <button onClick={navigteToSignIn} className='header__login-btn'>Login</button>
                     }

@@ -9,7 +9,6 @@ public class UserUpdateRequest
     public string? Username { get; set; }
     
     
-    [Required]
     [DataType(DataType.EmailAddress)]
     [EmailAddress]
     public string? Email { get; set; }

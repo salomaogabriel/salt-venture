@@ -116,7 +116,7 @@ public class UsersRepository : IUsersRepository
         return updateduser!.Entity;
     }
 
-    public async Task Delete(int id)
+    public async Task DeactiveUser(int id)
     {
         var user = await GetUserWithId(id);
         if(user == null) return;
