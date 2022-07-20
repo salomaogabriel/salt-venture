@@ -92,6 +92,7 @@ public class UsersRepository : IUsersRepository
     {
         return await _context.Users
         .Include(u => u.Bets)
+        .ThenInclude(b => b.Game)
         .FirstOrDefaultAsync(u => u.Id == id);
     }
 }
