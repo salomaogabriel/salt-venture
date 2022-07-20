@@ -1,0 +1,22 @@
+.info{
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 320px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+  
+}
+.center {
+    position: absolute;
+    height: 500px;
+    width: 600px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #792c1c;
+    padding: 10px;
+    background-color: rgb(62, 112, 96);
+    }
