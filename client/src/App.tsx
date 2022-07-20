@@ -7,6 +7,9 @@ import SignUp from './Components/SignUp';
 import SignIn from './Components/SignIn';
 import Home from './Components/Home';
 import Profile from './Components/Profile';
+import Rank from './Components/Rank';
+import Header from './Components/Header';
+import ProfileSettings from './Components/ProfileSettings';
 
 interface User {
   id: number | undefined,
@@ -23,32 +26,57 @@ function App() {
     username: undefined,
     balance: undefined,
     token: undefined
-});
-const updateUser = (user:User) =>
-{
- setUser(user);
- localStorage.setItem('user', JSON.stringify(user));
-}
-useEffect(() => {
-  let stored = localStorage.getItem('user');
-
-  if(stored !== null)
-  {
-    setUser(JSON.parse(stored))
+  });
+  const logOut = () => {
+    setUser({
+      id: undefined,
+      email: undefined,
+      username: undefined,
+      balance: undefined,
+      token: undefined
+    })
   }
-}, [])
+  const updateUser = (user: User) => {
+    setUser(user);
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+  useEffect(() => {
+    let stored = localStorage.getItem('user');
+
+    if (stored !== null) {
+      setUser(JSON.parse(stored))
+    }
+  }, [])
 
 
   return (
     <div className="App">
-      
-      <Routes> 
-          <Route path="/salt-venture/SignUp" element={<SignUp updateUser = {updateUser}/>}></Route> 
-          <Route path="/salt-venture/Login" element={<SignIn updateUser = {updateUser}/>}></Route> 
-          <Route path="/salt-venture/profile/:id" element={<Profile user= {user}/>}></Route> 
-          <Route path="/salt-venture/profile" element={<Profile user= {user}/>}></Route> 
-          <Route path="*" element={<Home user={user}/>}></Route> 
-        </Routes> 
+
+      <Routes>
+        <Route path="/salt-venture/SignUp" element={<></>}></Route>
+        <Route path="/salt-venture/Login" element={<></>}></Route>
+        <Route path="*" element={<Header user={user} logOut={logOut} />}></Route>
+      </Routes>
+
+{
+  user.id == undefined ? 
+  <Routes>
+  <Route path="/salt-venture/SignUp" element={<SignUp updateUser={updateUser} />}></Route>
+  <Route path="/salt-venture/Login" element={<SignIn updateUser={updateUser} />}></Route>
+  <Route path="*" element={<Home user={user} />}></Route>
+</Routes>
+  :
+
+      <Routes>
+        <Route path="/salt-venture/SignUp" element={<SignUp updateUser={updateUser} />}></Route>
+        <Route path="/salt-venture/Login" element={<SignIn updateUser={updateUser} />}></Route>
+        <Route path="/salt-venture/profile/:id" element={<Profile user={user} />}></Route>
+        <Route path="/salt-venture/profile" element={<Profile user={user} />}></Route>
+        <Route path="/salt-venture/ranks" element={<Rank user={user} />}></Route>
+        <Route path="/salt-venture/settings" element={<ProfileSettings />}></Route>
+        <Route path="*" element={<Home user={user} />}></Route>
+      </Routes>
+}
     </div>
   );
 }

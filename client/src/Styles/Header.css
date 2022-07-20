@@ -2,10 +2,16 @@
 .main-header {
     display: flex;
     justify-content: space-between;
-    padding: 10px 0;
-    width: 85%;
-    margin: auto;
+    top:0;
+    left: 0;
+    right: 0;
+    padding: 10px 20px;    
     align-items: center;
+    position: fixed;
+    background-color: #1d1d1f;
+}
+.sec-header {
+    height: 80px;
 }
 .salt-balance__icon {
     width: 28px;

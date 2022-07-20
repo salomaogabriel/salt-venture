@@ -8,6 +8,7 @@ public class Bet
     public BetStatus Status { get; set; }
     public int Amount { get; set; }
     public double Multiplier {get; set;}
+    public int Balance {get; set;}
     public DateTime Date {get; set;}
     public User? User {get; set;}
     

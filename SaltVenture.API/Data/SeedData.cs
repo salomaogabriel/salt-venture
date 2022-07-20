@@ -13,16 +13,67 @@ public static class SeedData
             serviceProvider.GetRequiredService<
             DbContextOptions<SaltVentureDbContext>>()))
         {
+            if(context.Bets.Any()) return;
             // Look to the Games table to any games
-            context.Games!.RemoveRange(context.Games);
-            var crash = new Game()
-            {
-                Name = "Crash",
-                Description = "it consists of a line that keeps going up and up, multiplying your bet — until it crashes. During this time period, you are free to cash out whenever you want, even automatically. If you cash out before the random crash, you keep your winnings — otherwise, you lose your whole bet until the next round.",
-                TimesPlayed = 0,
-                Exists = false,
+            var game = context.Games.FirstOrDefault();
+            var user = context.Users.FirstOrDefault( u => u.Username.ToLower().Contains("nich"));
+            var bets = new List<Bet>(){
+                new Bet(){
+                    Game = game,
+                    Status = BetStatus.Finished,
+                    Amount = 200,
+                    Multiplier = 2,
+                    Balance = 1000,
+                    Date = new DateTime(),
+                    User = user
+                },
+                new Bet(){
+                    Game = game,
+                    Status = BetStatus.Finished,
+                    Amount = 200,
+                    Multiplier = 0,
+                    Balance = 1200,
+                    Date = new DateTime(),
+                    User = user
+                },
+                new Bet(){
+                    Game = game,
+                    Status = BetStatus.Finished,
+                    Amount = 100,
+                    Multiplier = 1.5,
+                    Balance = 1000,
+                    Date = new DateTime(),
+                    User = user
+                },
+                new Bet(){
+                    Game = game,
+                    Status = BetStatus.Finished,
+                    Amount = 200,
+                    Multiplier = 2,
+                    Balance = 1050,
+                    Date = new DateTime(),
+                    User = user
+                },
+                new Bet(){
+                    Game = game,
+                    Status = BetStatus.Finished,
+                    Amount = 500,
+                    Multiplier = 0,
+                    Balance = 1250,
+                    Date = new DateTime(),
+                    User = user
+                },
+                new Bet(){
+                    Game = game,
+                    Status = BetStatus.Finished,
+                    Amount = 250,
+                    Multiplier = 2,
+                    Balance = 750,
+                    Date = new DateTime(),
+                    User = user
+                },
             };
-            context.Games!.Add(crash);
+            context.Bets.AddRange(bets);
             context.SaveChanges();
         }
     }

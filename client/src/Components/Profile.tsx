@@ -2,6 +2,10 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import Header from './Header';
+import '../Styles/Profile.css';
+import { TbSalt } from 'react-icons/tb';
+import { FaUserAlt } from 'react-icons/fa';
+import Chart from './Chart';
 
 interface Props {
     user: {
@@ -70,17 +74,23 @@ function Profile({ user }: Props) {
     }
     return (
         <div>
-            <div>
-                <Header user={user} />
-            </div>
-            <div>
-                <div>
-                    <p> {userData.email} </p>
-                    <p>{userData.username}</p>
-                    <p>{userData.balance}</p>
 
+            <div>
+                <FaUserAlt className='profile-image' />
+                <h2 className='profile-user'>{userData.username}</h2>
+                <div className='profile-list'>
+                    <p className='profile-list-item'>{userData.email} </p>
+                    <p className='profile-list-item'>Current Balance: <TbSalt className="profile-balance-icon"/>{userData.balance}</p>
                 </div>
             </div>
+            <hr className='rank-divider'/>
+
+            <div className='chart-title'>Balance Over Time:</div>
+            <Chart labels={[1,2,3,4,5,6,7,8,9,10]} data={[1000,800,780,480,200,350,700,809,9,1500]} label={"$ Salties"} color={"EA4545"}  />
+            <hr className='rank-divider'/>
+            <div className='chart-title'>Profit on Mines:</div>
+
+            <Chart labels={[1,2,3,4,5,6,7,8,9,10]} data={[1000,800,780,480,200,350,700,809,9,1500]} label={"$ Salties"} color={"EA4545"} />
         </div>
     );
 }
