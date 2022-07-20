@@ -13,7 +13,6 @@ public static class SeedData
             serviceProvider.GetRequiredService<
             DbContextOptions<SaltVentureDbContext>>()))
         {
-            if(context.Bets.Any()) return;
             // Look to the Games table to any games
             var game = context.Games.FirstOrDefault();
             var user = context.Users.FirstOrDefault( u => u.Username.ToLower().Contains("nich"));
