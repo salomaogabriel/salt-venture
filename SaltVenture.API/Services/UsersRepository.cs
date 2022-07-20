@@ -119,6 +119,7 @@ public class UsersRepository : IUsersRepository
     public async Task Delete(int id)
     {
         var user = await GetUserWithId(id);
+        if(user == null) return;
         user.IsActive = false;
         var updateduser = _context.Users?.Update(user);
         await _context.SaveChangesAsync();
