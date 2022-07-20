@@ -22,7 +22,7 @@
 
 .games {
     display: grid;
-    grid-template-columns: repeat(5, auto);
+    grid-template-columns: repeat(50, auto);
     background-color: #2d2d2f;
     border-radius: 10px;
     overflow-x: scroll;
@@ -39,7 +39,7 @@
 
 .game:hover {
     transform: scale(1.05);
-    animation: game-shake 500ms;
+    animation: game-shake 400ms;
 }
 
 @keyframes game-shake {
@@ -48,15 +48,15 @@
     }
 
     25% {
-        transform: scale(1.05) rotate(-5deg);
+        transform: scale(1.05) rotate(-2.5deg);
     }
 
     50% {
-        transform: scale(1.05) rotate(10deg);
+        transform: scale(1.05) rotate(5deg);
     }
 
     75% {
-        transform: scale(1.05) rotate(-5deg);
+        transform: scale(1.05) rotate(-2.5deg);
     }
 
     100% {

@@ -181,6 +181,7 @@
 }
 .delete-btns {
     display: flex;
+    justify-content: center;
     align-items: center;
 }
 .delete-screen-btn {
@@ -207,4 +208,8 @@
     100% {
         transform: scale(1) translate(-50%, -50%);
     }
+}
+
+.profile-error {
+    font-size: 10px;
 }

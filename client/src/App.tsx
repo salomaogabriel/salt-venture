@@ -77,7 +77,7 @@ function App() {
         <Route path="/salt-venture/profile/:id" element={<Profile user={user} />}></Route>
         <Route path="/salt-venture/profile" element={<Profile user={user} />}></Route>
         <Route path="/salt-venture/ranks" element={<Rank user={user} />}></Route>
-        <Route path="/salt-venture/profile/edit" element={<ProfileSettings user={user} logOut={logOut} />}></Route>
+        <Route path="/salt-venture/profile/edit" element={<ProfileSettings user={user} logOut={logOut} updateUser={updateUser} />}></Route>
         <Route path="/salt-venture/SignUp/Confirmation" element={<SignUpConfirmation />}></Route>
         <Route path="*" element={<Home user={user} />}></Route>
       </Routes>

@@ -11,6 +11,7 @@ const PageInfo: React.FC<Props> = ({ modalOpen, children }) => {
 
   return createPortal(
     <div >
+      <div className="full-screen-cover"></div>
       <div>{children}</div> 
     </div>,
     document.activeElement
