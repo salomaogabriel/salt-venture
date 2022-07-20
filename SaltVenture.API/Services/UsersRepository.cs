@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.EntityFrameworkCore;
 using SaltVenture.API.Data;
 using SaltVenture.API.Models;
+using SaltVenture.API.Models.Request;
 using System.Security.Cryptography;
 
 namespace SaltVenture.API.Services;
@@ -18,18 +19,17 @@ public class UsersRepository : IUsersRepository
     public bool EmailExists(string? email)
     {
         // TODO: Check if user exists in db
-        return _context.Users!.Any(u => u.Email == email);
+        return _context.Users!.Any(u => u.Email == email && u.IsActive == true);
     }
 
     public bool UsernameExists(string? username)
     {
-        return _context.Users!.Any(u => u.Username == username);
-
+        return _context.Users!.Any(u => u.Username == username && u.IsActive == true);
     }
     public async Task<List<User>> GetAllWithUsername(string? username)
     {
         return await _context.Users!
-            .Where(u => u.Username.Contains(username))
+            .Where(u => u.Username!.Contains(username!) && u.IsActive == true)
             .OrderByDescending(u => u.Balance)
             .ToListAsync();
     }
@@ -71,28 +71,56 @@ public class UsersRepository : IUsersRepository
 
     public async Task<List<User>> GetUsersWithEmail(string email)
     {
-        return await _context.Users!.Where(u => u.Email == email).ToListAsync();
+        return await _context.Users!.Where(u => u.Email == email && u.IsActive == true).ToListAsync();
     }
     public static bool VerifyPassword(string hashedPasswordWithSalt, string passwordToCheck)
-        {
-            // retrieve both salt and password from 'hashedPasswordWithSalt'
-            var passwordAndHash = hashedPasswordWithSalt.Split(':');
-            if (passwordAndHash == null || passwordAndHash.Length != 2)
-                return false;
-            var salt = Convert.FromBase64String(passwordAndHash[1]);
-            if (salt == null)
-                return false;
-            // hash the given password
-            var hashOfpasswordToCheck = HashPassword(passwordToCheck, salt, true);
-            // compare both hashes
-            return String.CompareOrdinal(passwordAndHash[0], hashOfpasswordToCheck) == 0;
-        }
+    {
+        // retrieve both salt and password from 'hashedPasswordWithSalt'
+        var passwordAndHash = hashedPasswordWithSalt.Split(':');
+        if (passwordAndHash == null || passwordAndHash.Length != 2)
+            return false;
+        var salt = Convert.FromBase64String(passwordAndHash[1]);
+        if (salt == null)
+            return false;
+        // hash the given password
+        var hashOfpasswordToCheck = HashPassword(passwordToCheck, salt, true);
+        // compare both hashes
+        return String.CompareOrdinal(passwordAndHash[0], hashOfpasswordToCheck) == 0;
+    }
 
     public async Task<User> GetUserWithId(int id)
     {
         return await _context.Users
         .Include(u => u.Bets)
         .ThenInclude(b => b.Game)
-        .FirstOrDefaultAsync(u => u.Id == id);
+        .FirstOrDefaultAsync(u => u.Id == id && u.IsActive == true);
+    }
+
+    public async Task<User> UpdateUser(User user, UserUpdateRequest request)
+    {
+       
+        if (request.Password != "")
+        {
+            user.Password = request.Password;
+        }
+        if (request.Email != "")
+        {
+            user.Email = request.Email;
+        }
+        if (request.Username != "")
+        {
+            user.Username = request.Username;
+        }
+        var updateduser = _context.Users?.Update(user);
+        await _context.SaveChangesAsync();
+        return updateduser!.Entity;
+    }
+
+    public async Task Delete(int id)
+    {
+        var user = await GetUserWithId(id);
+        user.IsActive = false;
+        var updateduser = _context.Users?.Update(user);
+        await _context.SaveChangesAsync();
     }
 }
