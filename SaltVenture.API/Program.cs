@@ -15,7 +15,8 @@ connString = connString.Replace("<username>", builder.Configuration["DB_USERNAME
 connString = connString.Replace("<password>", builder.Configuration["DB_PASSWORD"]);
 builder.Services.AddDbContext<SaltVentureDbContext>(options =>
     options.UseSqlServer(connString));
-builder.Services.AddControllers().AddJsonOptions(options =>
+builder.Services.AddControllers()
+.AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
 });
