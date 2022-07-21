@@ -13,6 +13,14 @@ public class SignUpError
         var msg = $"{email} is being used by another user!";
         Errors["Email"] = new List<string>(){msg};
     }
+       public void AddPasswordlError()
+    {
+        Status = 400;
+        Title = "One or more validation errors occurred.";
+        var msg = "Password must be bigger than 8!";
+        Errors["Password"] = new List<string>(){msg};
+    }
+
 
     public void AddUsernameExistsError(string? username)
     {
