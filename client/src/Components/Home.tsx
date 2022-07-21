@@ -9,6 +9,7 @@ import MineSweeper from "../Assets/minesweeper.png"
 import PageInfo from "./PageInfo";
 import PageInfoContent from "./PageInfoContent";
 import { Link } from 'react-router-dom';
+import SaltandPepper from '../Assets/salt&pepper.png'
 
 interface Props {
   user: {
@@ -44,14 +45,19 @@ function Home({ user }: Props) {
   return (
     <>
       <div className='home-screen'>
+        {user.id === undefined ?
+          <p className='sign-up__link'>New Here? <Link to="/salt-venture/signup">Sign Up!</Link></p>
+          :
+          <></>
+        }
         <div className='homepage-welcome-message'>
-          {
-            user.id !== undefined ?
-              <>Hello, &lt;/<span>{user.username}</span>&gt;
-              </>
-              :
-              <></>
-          }
+            {
+              user.id !== undefined ?
+                <>Hello, &lt;/<span>{user.username}</span>&gt;
+                </>
+                :
+                <></>
+            }
         </div>
 
         <p className='search-games-title'> What do you want to Play?</p>
@@ -76,8 +82,8 @@ function Home({ user }: Props) {
           <h4> Recent Games</h4>
           <div className="games">
             <div className="game">
-              <img className="game-img" src="https://play-lh.googleusercontent.com/S1h8A8cR9s1aLOkFwZJjPRaB4HG6DEWwEUOn_x4olAg-d45vTbt65GkJWYyozANaahM" alt="ss"
-                onClick={() => { setModalOpen(true); setGameName("Mine Sweeper") }} />
+              <img className="game-img" src={SaltandPepper} alt="Salt & Pepper"
+                onClick={() => { setModalOpen(true); setGameName("Salt & Pepper") }} />
               {/* <img className="game-img" src="https://play-lh.googleusercontent.com/S1h8A8cR9s1aLOkFwZJjPRaB4HG6DEWwEUOn_x4olAg-d45vTbt65GkJWYyozANaahM" alt="ss" />
               <div className="game-title">Mines</div> */}
             </div>
@@ -117,23 +123,18 @@ function Home({ user }: Props) {
           <h4> Most Popular </h4>
           <div className="games">
             <div className="game">
-              <img className="game-img" src="https://play-lh.googleusercontent.com/S1h8A8cR9s1aLOkFwZJjPRaB4HG6DEWwEUOn_x4olAg-d45vTbt65GkJWYyozANaahM" alt="ss" 
-              onClick={() => { setModalOpen(true); setGameName("Mine Sweeper") }}/>
+              <img className="game-img" src="https://play-lh.googleusercontent.com/S1h8A8cR9s1aLOkFwZJjPRaB4HG6DEWwEUOn_x4olAg-d45vTbt65GkJWYyozANaahM" alt="ss"
+                onClick={() => { setModalOpen(true); setGameName("Mine Sweeper") }} />
               {/* <div className="game-title">Mines</div> */}
             </div>
           </div>
+          <p className='footer'>Created with  ❤️ by .GQN</p>
+          <p className='footer'> Copyright &copy; 2022  <br /> &lt;/ Gabriel &gt;, &lt;/ Qaisar &gt;, &lt;/ Nicholas &gt;</p>
         </div>
       </div>
-      <PageInfo modalOpen={modalOpen} >
-        <PageInfoContent setModalOpen={setModalOpen} gameName={gameName} />
+      <PageInfo modalOpen={modalOpen} setModalOpen={setModalOpen} >
+        <PageInfoContent setModalOpen={setModalOpen} gameName={gameName} user={user} />
       </PageInfo>
-      <div className="new-here-home">
-        {user.id === undefined ?
-          <p className='sign-up__link'>New Here? <Link to="/salt-venture/signup">Sign Up!</Link></p>
-          :
-          <></>
-        }
-      </div>
     </>
   );
 }

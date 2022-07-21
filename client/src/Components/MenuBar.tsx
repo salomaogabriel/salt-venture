@@ -75,7 +75,7 @@ const MenuBar = ({ user, logOut }: Props) => {
         <div id="mySidepanel" className="sidepanel" style={{ "width": "250px" } as React.CSSProperties}>
           <FaUserAlt className='dropdown-user-icon' />
           <div className="dropdown-user">
-            <p> {user.username} </p>
+            <p> &lt;/ <span>{user.username}</span> &gt; </p>
             <p className='dropdown-email'> {user.email} </p>
           </div>
           <div className='header-links'>
@@ -94,7 +94,7 @@ const MenuBar = ({ user, logOut }: Props) => {
           </div>
         </div>
         </div>
-        <div className="full-screen-cover"></div>
+        <div className="full-screen-cover" onClick={toggleIsActive}></div>
       </>
 
     )

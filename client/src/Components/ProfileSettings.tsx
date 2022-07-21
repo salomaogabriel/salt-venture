@@ -75,7 +75,10 @@ function ProfileSettings({ user, logOut, updateUser }: Props) {
             if (response.ok) {
                 console.log(deserializedJSON)
                 updateUser({ id: deserializedJSON.id, email: deserializedJSON.email, username: deserializedJSON.username, balance: deserializedJSON.balance, token: user.token })
-                setConfirmation("Successfully Updated Account!")
+                setConfirmation("Successfully Updated Account!");
+                e.target["username"].value = "";
+                e.target["email"].value = "";
+                e.target["password"].value = "";
             }
             console.log(deserializedJSON);
         }

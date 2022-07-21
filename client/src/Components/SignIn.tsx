@@ -114,10 +114,10 @@ function SignIn({updateUser}:Props) {
             </div>
             <h1 className='create-account'>Welcome<br />Back!</h1>
             <form onSubmit={sendSignIn}>
-                <label htmlFor="email" className='sign-up__label'>Email
+                <label htmlFor="email" className='sign-up__label'>Username or Email
                     <div className={"input-wrapper " + (error.Email !== "" && error.Email !== undefined ? "error__input" : "")}>
-                        <MdEmail />
-                        <input onChange={(e) => { setEmailText(e.target.value) }} value={emailText} placeholder='example@appliedtechnology.se' type="text" name='email' id='email' required />
+                        <FaUserAlt />
+                        <input onChange={(e) => { setEmailText(e.target.value) }} value={emailText} placeholder='Username or Email' type="text" name='email' id='email' required />
                     </div>
                     <p className='error__msg'> {error.Email}</p>
                 </label>

@@ -246,3 +246,8 @@
 .sign-in__button--confirmation:hover {
     opacity: 90%;
 }
+.almost-hidden {
+    text-align: center;
+    color: #67656c;
+    font-size: 8px;
+}

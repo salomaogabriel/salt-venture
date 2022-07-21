@@ -11,6 +11,7 @@ import Rank from './Components/Rank';
 import Header from './Components/Header';
 import ProfileSettings from './Components/ProfileSettings';
 import SignUpConfirmation from './Components/SignUpConfirmation';
+import SaltandPepper from './Components/SaltandPepper';
 
 interface User {
   id: number | undefined,
@@ -56,7 +57,6 @@ function App() {
 
       <Routes>
         <Route path="/salt-venture/SignUp" element={<></>}></Route>
-        <Route path="/salt-venture/SignUp/confirmation" element={<></>}></Route>
         <Route path="/salt-venture/Login" element={<></>}></Route>
         <Route path="*" element={<Header user={user} logOut={logOut} />}></Route>
       </Routes>
@@ -64,21 +64,22 @@ function App() {
 {
   user.id == undefined ? 
   <Routes>
-  <Route path="/salt-venture/SignUp" element={<SignUp updateUser={updateUser} />}></Route>
-  <Route path="/salt-venture/Login" element={<SignIn updateUser={updateUser} />}></Route>
-  <Route path="/salt-venture/SignUp/Confirmation" element={<SignUpConfirmation />}></Route>
+  <Route path="/salt-venture/signup" element={<SignUp updateUser={updateUser} />}></Route>
+  <Route path="/salt-venture/login" element={<SignIn updateUser={updateUser} />}></Route>
+  <Route path="/salt-venture/signup/confirmation" element={<SignUpConfirmation logOut={logOut}/>}></Route>
   <Route path="*" element={<Home user={user} />}></Route>
 </Routes>
   :
 
       <Routes>
-        <Route path="/salt-venture/SignUp" element={<SignUp updateUser={updateUser} />}></Route>
+        <Route path="/salt-venture/signup" element={<SignUp updateUser={updateUser} />}></Route>
         <Route path="/salt-venture/Login" element={<SignIn updateUser={updateUser} />}></Route>
         <Route path="/salt-venture/profile/:id" element={<Profile user={user} />}></Route>
         <Route path="/salt-venture/profile" element={<Profile user={user} />}></Route>
         <Route path="/salt-venture/ranks" element={<Rank user={user} />}></Route>
         <Route path="/salt-venture/profile/edit" element={<ProfileSettings user={user} logOut={logOut} updateUser={updateUser} />}></Route>
-        <Route path="/salt-venture/SignUp/Confirmation" element={<SignUpConfirmation />}></Route>
+        <Route path="/salt-venture/signup/confirmation" element={<SignUpConfirmation logOut={logOut} />}></Route>
+        <Route path="/salt-venture/games/saltandpepper" element={<SaltandPepper user={user} updateUser={updateUser}/>}></Route>
         <Route path="*" element={<Home user={user} />}></Route>
       </Routes>
 }
