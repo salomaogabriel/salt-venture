@@ -12,8 +12,8 @@ interface Props {
 }
 const SNPBox = ({ isPlaying, id, isPepper, isSalt, canBeClicked, onClickFunction }) => {
     const click = () => {
+        if(canBeClicked)
         onClickFunction(id);
-        console.log("clicked");
     }
     if (isPepper)
         return (
