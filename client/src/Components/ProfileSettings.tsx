@@ -81,8 +81,12 @@ function ProfileSettings({ user, logOut, updateUser }: Props) {
         }
         catch (err) {
             let errors = JSON.parse(err.message);
+            console.log(errors);
             if (errors.status == undefined) {
-                setError({ Password: errors.Password, Username: errors.Username, Email: errors.Email })
+                let passwordError = errors.Password ? errors.Password["$values"][0] : "";
+                let emailError = errors.Email ? errors.Email["$values"][0] : "";
+                let usernameError = errors.Username ? errors.Username["$values"][0] : "";
+                setError({ Password: passwordError, Username: usernameError, Email: emailError})
             }
             else {
                 errors = errors.errors;

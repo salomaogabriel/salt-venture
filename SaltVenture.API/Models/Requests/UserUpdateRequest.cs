@@ -13,7 +13,5 @@ public class UserUpdateRequest
     [EmailAddress]
     public string? Email { get; set; }
     
-    [DataType(DataType.Password)]
-    [MinLength(8,ErrorMessage = "Password has to be at least 8 characters long!")]
     public string? Password { get; set; }
 }

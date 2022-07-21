@@ -13,22 +13,22 @@ interface User {
     username: string | undefined,
     balance: number | undefined,
     token: string | undefined,
-  }
+}
 interface Errors {
     Password: string | undefined,
     Username: string | undefined,
     Email: string | undefined
 }
 interface Props {
-    updateUser: (user:User) => void;
-  }
-function SignUp({updateUser}:Props) {
+    updateUser: (user: User) => void;
+}
+function SignUp({ updateUser }: Props) {
     const [isLoading, setIsLoading] = useState(false);
     const [emailText, setEmailText] = useState('');
     const [passwordText, setPasswordText] = useState('');
     const [usernameText, setUsernameText] = useState('');
     const [error, setError] = useState<Errors>({ Password: "", Username: "", Email: "" });
-   
+
     const navigate = useNavigate();
     const navigteToSignIn = () => {
         navigate('/salt-venture/');
@@ -60,7 +60,7 @@ function SignUp({updateUser}:Props) {
             }
             const deserializedJSON = await response.json();
             console.log(deserializedJSON);
-        setIsLoading(false);
+            setIsLoading(false);
             navigate('/salt-venture/SignUp/Confirmation');
         } catch (err) {
             let errors = JSON.parse(err.message);
@@ -73,9 +73,8 @@ function SignUp({updateUser}:Props) {
                 let emailError = errors.Email ? errors.Email[0] : "";
                 let usernameError = errors.Username ? errors.Username[0] : "";
                 setError({ Password: passwordError, Username: usernameError, Email: emailError })
-
             }
-        setIsLoading(false);
+            setIsLoading(false);
 
         }
 
@@ -117,13 +116,13 @@ function SignUp({updateUser}:Props) {
                 </label>
                 <button className='sign-up__button' >{
                     !isLoading ?
-                    <>Sign Up</>
-                    :
-                    <div className="wave-animation">
-                            <div className="wave" style={{"--w":"0s"} as React.CSSProperties } ></div>
-                            <div className="wave" style={{"--w":"0.4s"} as React.CSSProperties }></div>
-                            <div className="wave" style={{"--w":"0.8s"} as React.CSSProperties }></div>
-                            <div className="wave" style={{"--w":"1.2s"} as React.CSSProperties }></div>
+                        <>Sign Up</>
+                        :
+                        <div className="wave-animation">
+                            <div className="wave" style={{ "--w": "0s" } as React.CSSProperties} ></div>
+                            <div className="wave" style={{ "--w": "0.4s" } as React.CSSProperties}></div>
+                            <div className="wave" style={{ "--w": "0.8s" } as React.CSSProperties}></div>
+                            <div className="wave" style={{ "--w": "1.2s" } as React.CSSProperties}></div>
                         </div>
                 }</button>
             </form>

@@ -139,6 +139,10 @@ public class UsersController : ControllerBase
         {
             errors.AddUsernameExistsError(request.Username);
         }
+        if(request.Password != "" && request.Password!.Length <= 7)
+        {
+            errors.AddPasswordlError();
+        }
         if (errors.Errors.Any()) return BadRequest(errors.Errors);
         user = await _usersRepository.UpdateUser(user, request);
         var response = new UserProfileResponse()
