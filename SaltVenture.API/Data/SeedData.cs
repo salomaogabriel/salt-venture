@@ -18,7 +18,7 @@ public static class SeedData
             var user = context.Users.FirstOrDefault( u => u.Username!.ToLower().Contains("nich"));
             var bets = new List<Bet>(){
                 new Bet(){
-                    Game = game,
+                    Game = game.Id,
                     Status = BetStatus.Finished,
                     Amount = 200,
                     Multiplier = 2,
@@ -27,7 +27,7 @@ public static class SeedData
                     User = user
                 },
                 new Bet(){
-                    Game = game,
+                    Game = game.Id,
                     Status = BetStatus.Finished,
                     Amount = 200,
                     Multiplier = 0,
@@ -36,7 +36,7 @@ public static class SeedData
                     User = user
                 },
                 new Bet(){
-                    Game = game,
+                    Game = game.Id,
                     Status = BetStatus.Finished,
                     Amount = 100,
                     Multiplier = 1.5,
@@ -45,7 +45,7 @@ public static class SeedData
                     User = user
                 },
                 new Bet(){
-                    Game = game,
+                    Game = game.Id,
                     Status = BetStatus.Finished,
                     Amount = 200,
                     Multiplier = 2,
@@ -54,7 +54,7 @@ public static class SeedData
                     User = user
                 },
                 new Bet(){
-                    Game = game,
+                    Game = game.Id,
                     Status = BetStatus.Finished,
                     Amount = 500,
                     Multiplier = 0,
@@ -63,7 +63,7 @@ public static class SeedData
                     User = user
                 },
                 new Bet(){
-                    Game = game,
+                    Game = game.Id,
                     Status = BetStatus.Finished,
                     Amount = 250,
                     Multiplier = 2,
