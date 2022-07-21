@@ -7,7 +7,9 @@ using SaltVenture.API.Data;
 using SaltVenture.API.Services;
 using simpleAPI.Data;
 
+
 var builder = WebApplication.CreateBuilder(args);
+
 
 // Add services to the container.
 var connString = builder.Configuration.GetConnectionString("SaltVentureContext");
@@ -54,6 +56,7 @@ builder.Services.AddSwaggerGen(c =>
 });
 builder.Services.AddScoped<IGamesRepository, GamesRepository>();
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
+builder.Services.AddScoped<ISaltnPepperRepository, SaltnPepperRepository>();
 // JWT PART
 var tokenKey = builder.Configuration["TOKEN_KEY"];
 var key = Encoding.ASCII.GetBytes(tokenKey);

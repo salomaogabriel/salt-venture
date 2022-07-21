@@ -92,7 +92,6 @@ public class UsersRepository : IUsersRepository
     {
         return await _context.Users
         .Include(u => u.Bets)
-        .ThenInclude(b => b.Game)
         .FirstOrDefaultAsync(u => u.Id == id && u.IsActive == true);
     }
 
@@ -123,5 +122,14 @@ public class UsersRepository : IUsersRepository
         user.IsActive = false;
         var updateduser = _context.Users?.Update(user);
         await _context.SaveChangesAsync();
+    }
+
+    public async Task<User> UpdateBalance(int newBalance, User user)
+    {
+        user.Balance = newBalance;
+        var updateduser = _context.Users?.Update(user);
+        await _context.SaveChangesAsync();
+        return updateduser!.Entity;
+
     }
 }
