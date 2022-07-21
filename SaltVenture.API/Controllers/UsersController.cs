@@ -29,7 +29,14 @@ public class UsersController : ControllerBase
     {
         var user = (await _usersRepository.GetUsersWithEmail(request.Email!)).FirstOrDefault(
                       u => UsersRepository.VerifyPassword(u.Password!, request.Password!));
-        if (user == null) return NotFound("Email or password was wrong!");
+        if (user == null) 
+        {
+            user = (await _usersRepository.GetAllWithUsername(request.Email!)).FirstOrDefault(
+                      u => UsersRepository.VerifyPassword(u.Password!, request.Password!));
+            if(user == null)
+                return NotFound("Email or password was wrong!");
+        }
+            
 
         var token = _authService.Authenticate(user);
         if (token == null) return NotFound();
