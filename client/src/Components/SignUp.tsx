@@ -60,10 +60,8 @@ function SignUp({updateUser}:Props) {
             }
             const deserializedJSON = await response.json();
             console.log(deserializedJSON);
-            updateUser(deserializedJSON);
         setIsLoading(false);
-
-            navigate('/salt-venture/');
+            navigate('/salt-venture/SignUp/Confirmation');
         } catch (err) {
             let errors = JSON.parse(err.message);
             if (errors.status == undefined) {
@@ -119,7 +117,7 @@ function SignUp({updateUser}:Props) {
                 </label>
                 <button className='sign-up__button' >{
                     !isLoading ?
-                    <>Sig Up</>
+                    <>Sign Up</>
                     :
                     <div className="wave-animation">
                             <div className="wave" style={{"--w":"0s"} as React.CSSProperties } ></div>

@@ -4,10 +4,9 @@ import Header from './Header'
 import { Squeeze as Hamburger } from 'hamburger-react'
 import { isTemplateExpression } from 'typescript';
 import { Link } from 'react-router-dom';
-import { FaUserAlt } from 'react-icons/fa';
+import { FaPencilRuler, FaUserAlt } from 'react-icons/fa';
 import { AiOutlineHome } from 'react-icons/ai';
 import { GiWorld } from 'react-icons/gi';
-import { MdOutlineSettings } from 'react-icons/md';
 import { BiLogOut } from 'react-icons/bi';
 
 interface Props {
@@ -43,8 +42,14 @@ const MenuBar = ({ user, logOut }: Props) => {
     {
       display: 'Profile',
       icon: <FaUserAlt className='dropdown-icon' />,
-      to: '/salt-venture/profile',
+      to: '/salt-venture/profile/' + user.id,
       section: 'profile'
+    },
+    {
+      display: 'Edit Profile',
+      icon: <FaPencilRuler className='dropdown-icon' />,
+      to: '/salt-venture/profile/edit',
+      section: 'rank'
     },
     {
       display: 'Rankings',
@@ -52,12 +57,6 @@ const MenuBar = ({ user, logOut }: Props) => {
       to: '/salt-venture/ranks',
       section: 'rank'
     },
-    {
-      display: 'Settings',
-      icon: <MdOutlineSettings className='dropdown-icon' />,
-      to: '/salt-venture/settings',
-      section: 'rank'
-    }
   ]
   if(user.id == undefined)
   {

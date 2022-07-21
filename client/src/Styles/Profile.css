@@ -21,7 +21,7 @@
 }
 
 .profile-image {
-    display: flex;
+    display: block;
     border: 2px solid #2D2D2F;
     padding: 10px;
     border-radius: 10px;
@@ -38,6 +38,7 @@
     margin-bottom: 10px;
     margin-top: 10px;
 }
+
 .profile-graph {
     box-sizing: border-box;
     width: 85%;
@@ -45,4 +46,170 @@
     border-radius: 10px;
     background-color: #2D2D2F;
     padding: 10px;
+}
+
+.profile-edit__wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: right;
+}
+
+.profile-edit__button {
+    margin-left: auto;
+    margin-right: 30px;
+    border-radius: 5px;
+    background-color: #2D2D2F;
+    color: #EA4545;
+    padding: 7px;
+    border: 0.5px solid transparent;
+    transition: 400ms;
+}
+
+.profile-edit__button--active {
+    color: white;
+    background-color: #EA4545;
+    margin-left: auto;
+    margin-right: 30px;
+    border-radius: 5px;
+    color: #2D2D2F;
+    padding: 7px;
+    border: 0.5px solid transparent;
+    transition: 400ms;
+}
+
+.profile-edit__button:hover {
+    border: 0.5px solid #EA4545;
+    opacity: 95%;
+    cursor: pointer;
+}
+
+
+.edit-profile-picture {
+    text-align: center;
+    font-size: 16px;
+    color: rgba(231, 119, 119, 0.84);
+    user-select: none;
+}
+
+.edit-profile-picture:hover {
+    cursor: pointer;
+    color: #EA4545;
+}
+
+.edit-field-wrapper {
+    border: 2px solid transparent;
+
+    display: flex;
+    margin-top: 10px;
+    background-color: #2D2D2F;
+    color: whitesmoke;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    outline: 0;
+    font-size: 16px;
+    padding: 20px;
+}
+
+.edit-field-input {
+    display: flex;
+    background-color: #2D2D2F;
+    color: whitesmoke;
+    border-radius: 10px;
+    border: 0;
+    outline: 0;
+    font-size: 16px;
+}
+
+.edit-icon {
+    color: #EA4545;
+}
+
+.edit-field-wrapper:focus-within {
+    border-color: #EA4545;
+}
+
+.edit-divider {
+    margin-top: 10px;
+    height: 1px;
+    border: 0;
+    background-color: rgb(88, 88, 95);
+}
+
+.submit-edit {
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: #EA4545;
+    color: white;
+    padding: 7px;
+    border: 0.5px solid transparent;
+    transition: 400ms;
+    font-size: 20px;
+    font-weight: 900;
+}
+.edit-delete {
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: rgba(255, 159, 64, 0.2);
+    transition: 400ms;
+    border: 2px solid rgba(255, 159, 64, 1);
+    color: rgba(255, 159, 64, 1);
+    padding: 7px;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 900;
+    cursor: pointer;
+}
+.edit-delete:hover {
+    background-color: rgba(255, 159, 64, 1);
+    color: #2D2D2F;
+}
+.delete-confirmation-screen {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform:scale(0) translate(-50%, -50%);
+    padding: 10px;
+    border-radius: 10px;
+    z-index: 200;
+    background-color: #2D2D2F;
+    border:2px solid red;
+    animation: scale-up 200ms forwards;
+
+}
+.delete-btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.delete-screen-btn {
+    margin: 5px;
+    border-radius: 5px;
+    background-color: rgba(255, 159, 64, 1);
+    color: #2D2D2F;
+    transition: 400ms;
+    border: 2px solid rgba(255, 159, 64, 1);
+    padding: 7px;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 900;
+    cursor: pointer;
+}
+.delete-screen-btn--cancel {
+    background-color: transparent;
+    color: rgba(255, 159, 64, 1);
+}
+@keyframes scale-up {
+    0% {
+        transform: scale(0) translate(-50%, -50%);
+    }
+    100% {
+        transform: scale(1) translate(-50%, -50%);
+    }
+}
+
+.profile-error {
+    font-size: 10px;
 }

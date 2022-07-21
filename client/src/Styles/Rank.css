@@ -45,7 +45,7 @@
 }
 
 .rank-list-item:hover {
-    border-color: #ea45455c;
+    border-color: #EA45455c;
     transform: scale(1.005);
 }
 
@@ -79,7 +79,6 @@
     border: 2px solid transparent;
     font-size: 24px;
     color: #EA4545;
-
 }
 
 

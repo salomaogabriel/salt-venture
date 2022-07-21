@@ -160,7 +160,7 @@ public class UsersController : ControllerBase
             .FirstOrDefault()!.Value;
         if (!int.TryParse(idClaim, out var id)) return Unauthorized();
 
-        await _usersRepository.Delete(id);
+        await _usersRepository.DeactiveUser(id);
         return NoContent();
     }
 

@@ -42,7 +42,8 @@ function Rank({ user }: Props) {
                 throw new Error(JSON.stringify(await response.json()));
             }
             const deserializedJSON = await response.json();
-            setData(deserializedJSON);
+            console.log(deserializedJSON)
+            setData(deserializedJSON["$values"]);
         }
         catch (err) {
             console.log(err);
@@ -70,7 +71,7 @@ function Rank({ user }: Props) {
                                     <div className="rank-list-item-info">
                                         <p className='rank-list-item__username'>{user.username}</p>
 
-                                        <p className='rank-list-item__balance'><TbSalt /> {user.balance}</p>
+                                        <p className='rank-list-item__balance'><TbSalt className='salt-shaker' /> {user.balance}</p>
 
                                     </div>
 

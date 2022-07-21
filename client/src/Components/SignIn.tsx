@@ -105,7 +105,6 @@ function SignIn({updateUser}:Props) {
         // setPasswordText('');
         // setUsernameText('');
     }
-
     return (
         <div className="sign-up">
             <div className="sign-up__header">

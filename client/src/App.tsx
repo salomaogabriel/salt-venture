@@ -10,6 +10,7 @@ import Profile from './Components/Profile';
 import Rank from './Components/Rank';
 import Header from './Components/Header';
 import ProfileSettings from './Components/ProfileSettings';
+import SignUpConfirmation from './Components/SignUpConfirmation';
 
 interface User {
   id: number | undefined,
@@ -35,6 +36,7 @@ function App() {
       balance: undefined,
       token: undefined
     })
+    localStorage.clear();
   }
   const updateUser = (user: User) => {
     setUser(user);
@@ -54,6 +56,7 @@ function App() {
 
       <Routes>
         <Route path="/salt-venture/SignUp" element={<></>}></Route>
+        <Route path="/salt-venture/SignUp/confirmation" element={<></>}></Route>
         <Route path="/salt-venture/Login" element={<></>}></Route>
         <Route path="*" element={<Header user={user} logOut={logOut} />}></Route>
       </Routes>
@@ -63,6 +66,7 @@ function App() {
   <Routes>
   <Route path="/salt-venture/SignUp" element={<SignUp updateUser={updateUser} />}></Route>
   <Route path="/salt-venture/Login" element={<SignIn updateUser={updateUser} />}></Route>
+  <Route path="/salt-venture/SignUp/Confirmation" element={<SignUpConfirmation />}></Route>
   <Route path="*" element={<Home user={user} />}></Route>
 </Routes>
   :
@@ -73,7 +77,8 @@ function App() {
         <Route path="/salt-venture/profile/:id" element={<Profile user={user} />}></Route>
         <Route path="/salt-venture/profile" element={<Profile user={user} />}></Route>
         <Route path="/salt-venture/ranks" element={<Rank user={user} />}></Route>
-        <Route path="/salt-venture/settings" element={<ProfileSettings />}></Route>
+        <Route path="/salt-venture/profile/edit" element={<ProfileSettings user={user} logOut={logOut} updateUser={updateUser} />}></Route>
+        <Route path="/salt-venture/SignUp/Confirmation" element={<SignUpConfirmation />}></Route>
         <Route path="*" element={<Home user={user} />}></Route>
       </Routes>
 }

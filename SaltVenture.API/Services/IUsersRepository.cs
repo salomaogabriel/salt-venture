@@ -11,6 +11,6 @@ public interface IUsersRepository
     Task<User> AddToDb(string? email, string? username, string? password);
     Task<List<User>> GetUsersWithEmail(string email);
     Task<User> GetUserWithId(int id);
- Task<User> UpdateUser(User user, UserUpdateRequest request);
-    Task Delete(int id);
+    Task<User> UpdateUser(User user, UserUpdateRequest request);
+    Task DeactiveUser(int id);
 }
