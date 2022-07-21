@@ -74,7 +74,7 @@ function ProfileSettings({ user, logOut, updateUser }: Props) {
             const deserializedJSON = await response.json();
             if (response.ok) {
                 console.log(deserializedJSON)
-                updateUser({ id: deserializedJSON.id, email:deserializedJSON.email,username:deserializedJSON.username, balance:deserializedJSON.balance, token:user.token})
+                updateUser({ id: deserializedJSON.id, email: deserializedJSON.email, username: deserializedJSON.username, balance: deserializedJSON.balance, token: user.token })
                 setConfirmation("Successfully Updated Account!")
             }
             console.log(deserializedJSON);
