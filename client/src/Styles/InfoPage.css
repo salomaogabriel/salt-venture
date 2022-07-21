@@ -4,11 +4,10 @@
   height: fit-content;
   bottom: -300px;
   width: 100%;
-  padding: 10px;
   background-color: #1d1d1f;
   animation: rise 200ms forwards;
-  max-width: 500px;
   z-index: 200;
+  padding-bottom: 10px;
 }
 
 @media only screen and (min-width:500px) {
@@ -16,10 +15,11 @@
     border: 1px solid #792c1c;
     border-radius: 25px;
     margin: auto;
-    width: 400px;
+    width: 350px;
     left: 50%;
     transform: translate(-50%, -50%);
-
+    padding: 10px;
+    padding-bottom: 20px;
     top: 50%;
   }
 
@@ -40,7 +40,7 @@
 .cancel-popup__button {
   position: absolute;
   color: #EA4545;
-  top: 8px;
+  top: 16px;
   right: 16px;
   font-size: 18px;
   cursor: pointer;
@@ -61,6 +61,7 @@
   flex-direction: column;
   padding-right: 40px;
   padding-left: 40px;
+  text-align: center;
 }
 
 .play-button {
@@ -84,4 +85,12 @@
 .play-button:hover {
   color: #f1e7e7;
   background-color: #752929;
+}
+
+.description-divider {
+  width: 80%;
+  margin: auto;
+  background-color: #8C8A93;
+  border: none;
+  height: 1px;
 }

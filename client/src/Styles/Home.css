@@ -82,7 +82,14 @@
     border-radius: 0 0 10px 10px;
 
 }
+.footer {
+    margin-top: 40px;
+    text-align: center;
+    color: #8C8A93;;
+    font-weight: 100;
+    font-size: 18px;
 
+}
 .new-here-home {
     margin-top: 50px;
 }

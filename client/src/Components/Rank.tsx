@@ -72,9 +72,7 @@ function Rank({ user }: Props) {
                                         <p className='rank-list-item__username'>{user.username}</p>
 
                                         <p className='rank-list-item__balance'><TbSalt className='salt-shaker' /> {user.balance}</p>
-
                                     </div>
-
                                 </Link>
                                 <hr className='rank-divider' />
                             </>
@@ -88,13 +86,12 @@ function Rank({ user }: Props) {
         <div>
             <h1 className='rank-title'>Rankings</h1>
             <label className='search-bar-rank'>
-
                 <input type="search" name="search" onChange={(e) => getUsers(e.target.value)} placeholder="search user" /> <AiOutlineSearch />
             </label>
             <hr className='rank-title-divider' />
             <div className='rank-list'>
                 <div className='rank-list-item'>
-                    <div className="no-user">No User Found</div>
+                    <div className="no-user">No User Found |</div>
                 </div>
             </div>
         </div>

@@ -90,8 +90,9 @@ function Profile({ user }: Props) {
                 }
             </>
             <div>
+
                 <FaUserAlt className='profile-image' />
-                <h2 className='profile-user'>{userData.username}</h2>
+                <h2 className='profile-user'> &lt;/ {userData.username} &gt;</h2>
                 <div className='profile-list'>
                     <p className='profile-list-item'>{userData.email} </p>
                     <p className='profile-list-item'>Current Points: <TbSalt className="profile-balance-icon salt-shaker" />{userData.balance}</p>

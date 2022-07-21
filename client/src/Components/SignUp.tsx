@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Routes, Route, useNavigate, Link } from 'react-router-dom';
 import '../Styles/SignUp.css';
 import { MdEmail, MdLock } from "react-icons/md";
 import { FaApple, FaUserAlt } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { BsArrowLeft } from "react-icons/bs";
-import { stringify } from 'querystring';
+import { isReturnStatement } from 'typescript';
 
 interface User {
     id: number | undefined,
@@ -27,16 +27,39 @@ function SignUp({ updateUser }: Props) {
     const [emailText, setEmailText] = useState('');
     const [passwordText, setPasswordText] = useState('');
     const [usernameText, setUsernameText] = useState('');
+    const [confirmPasswordText, setConfirmPasswordText] = useState('');
+    const [confirmPasswordError, setConfirmPassowrderror] = useState('');
     const [error, setError] = useState<Errors>({ Password: "", Username: "", Email: "" });
 
     const navigate = useNavigate();
     const navigteToSignIn = () => {
         navigate('/salt-venture/');
     };
+    const checkPassword = () =>
+    {
+        setConfirmPassowrderror("");
+
+        if(confirmPasswordText != passwordText)
+        {
+            setConfirmPassowrderror("The passwords must match!");
+            // SHow error
+        }
+    }
+    useEffect(() => {
+      
+    checkPassword();
+      
+    }, [confirmPasswordText,passwordText])
+    
     const sendSignUp = async (e) => {
         e.preventDefault();
         setIsLoading(true);
 
+        if(passwordText != confirmPasswordText) 
+        {
+            checkPassword();
+            return;
+        }
         var myHeaders = new Headers();
         setError({ Password: undefined, Username: undefined, Email: undefined })
 
@@ -60,12 +83,17 @@ function SignUp({ updateUser }: Props) {
             }
             const deserializedJSON = await response.json();
             console.log(deserializedJSON);
+            updateUser(deserializedJSON);
             setIsLoading(false);
             navigate('/salt-venture/SignUp/Confirmation');
         } catch (err) {
             let errors = JSON.parse(err.message);
+            console.log(errors);
             if (errors.status == undefined) {
-                setError({ Password: errors.Password, Username: errors.Username, Email: errors.Email })
+                let passwordError = errors.Password ? errors.Password["$values"][0] : "";
+                let emailError = errors.Email ? errors.Email["$values"][0] : "";
+                let usernameError = errors.Username ? errors.Username["$values"][0] : "";
+                setError({ Password: passwordError, Username: usernameError, Email: emailError})
             }
             else {
                 errors = errors.errors;
@@ -110,9 +138,16 @@ function SignUp({ updateUser }: Props) {
                 <label htmlFor="password" className='sign-up__label'>Password
                     <div className={"input-wrapper " + (error.Password !== "" && error.Password !== undefined ? "error__input" : "")}>
                         <MdLock />
-                        <input onChange={(e) => { setPasswordText(e.target.value) }} value={passwordText} placeholder='Password' type="password" name='password' id='password' required />
+                        <input onChange={(e) => { setPasswordText(e.target.value);checkPassword() }} value={passwordText} placeholder='Password' type="password" name='password' id='password' required />
                     </div>
                     <p className='error__msg'> {error.Password}</p>
+                </label>
+                <label htmlFor="confirm-password" className='sign-up__label'>Confirm Password
+                    <div className={"input-wrapper " + (confirmPasswordError !== "" && confirmPasswordError !== undefined ? "error__input" : "")}>
+                        <MdLock />
+                        <input onChange={(e) => { setConfirmPasswordText(e.target.value);checkPassword() }} value={confirmPasswordText} placeholder='Repeat Password' type="password" name='confirm-password' id='confirm-password' required />
+                    </div>
+                    <p className='error__msg'> {confirmPasswordError}</p>
                 </label>
                 <button className='sign-up__button' >{
                     !isLoading ?

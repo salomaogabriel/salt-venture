@@ -7,13 +7,15 @@ ul {
 li {
   padding: 18px 10px;
 }
+
 .header-links {
   overflow-y: scroll;
 }
+
 .sidepanel {
   width: 0;
   position: fixed;
-  height: 100vh;
+  height: 80vh;
   top: 0;
   left: 0;
   background-color: #1D1D1F;
@@ -22,7 +24,7 @@ li {
   padding-bottom: 45px;
   padding-top: 60px;
   z-index: 200;
-
+  border-bottom: 20vh solid #1D1D1F;
 }
 
 .sidepanel a,
@@ -39,8 +41,9 @@ li {
 
 .log-out {
   margin-bottom: 60px;
-  
+
 }
+
 .sidepanel a:hover {
   background-color: #2D2D2F;
 }
@@ -58,6 +61,9 @@ li {
 
 .burger-header {
   z-index: 300;
+  background-color: #1D1D1F;
+  border-radius: 10px;
+  border: 1px solid #ea454557;
 }
 
 .dropdown-icon {
