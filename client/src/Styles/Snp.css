@@ -21,11 +21,14 @@
 }
 
 .snp-box img {
-    position: relative;
 }
 
 .snp-pepper {
     background-color: rgb(220, 122, 122);
+}
+.snp-salt img, .snp-pepper img {
+    width: 100%;
+    height: 60px;
 }
 
 .snp-salt {
