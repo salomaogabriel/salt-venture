@@ -7,6 +7,7 @@ public class SaltnPepperResponse
     public string? GridResponse {get; set;}
     public int PepperNumbers {get; set;}
     public int NumberOfPicks {get; set;}
+    public Bet Bet {get; set;}
 
     public SaltnPepperResponse(SaltnPepper game)
     {
@@ -14,8 +15,10 @@ public class SaltnPepperResponse
         IsCompleted = game.IsCompleted;
         PepperNumbers = game.PepperNumbers;
         NumberOfPicks = game.NumberOfPicks;
-        GridResponse = IsCompleted ? game.Grid :
+        GridResponse = IsCompleted ? game.Grid:
         HidePeppers(game.Grid!);
+
+        Bet = game.Bet!;
     }
     public string HidePeppers(string grid)
     {

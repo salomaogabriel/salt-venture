@@ -61,7 +61,15 @@ public class SaltnPepperController : ControllerBase
 
         if (user == null) return Unauthorized();
 
+        if (user.Balance - request.BetAmount < 0) return BadRequest("You Don't Have Enough Points!");
+         var activeGame = await _saltnPepperRepository.GetActiveGame(claimedId);
+        if (activeGame != null) {
+            var responseActive = new SaltnPepperResponse(activeGame);
+            return Ok(responseActive);
+
+        }
         // Change Balance
+        var oldBalance = user.Balance;
         user = await _usersRepository.UpdateBalance(user.Balance - request.BetAmount, user);
 
         var bet = new Bet()
@@ -69,38 +77,97 @@ public class SaltnPepperController : ControllerBase
             Game = 0,
             Status = BetStatus.NotFinished,
             Amount = request.BetAmount,
-            Multiplier = 0,
-            Balance = user.Balance - request.BetAmount,
+            Multiplier = 1,
+            Balance = oldBalance,
             Date = new DateTime(),
             User = user
         };
+        bet = await _saltnPepperRepository.CreateBet(bet);
+
         var game = new SaltnPepper()
         {
             User = user,
             IsCompleted = false,
             Grid = SaltnPepperLogic.GridGenerator(request.PepperAmount),
             PepperNumbers = request.PepperAmount,
-            NumberOfPicks = 0
+            NumberOfPicks = 0,
+            Bet = bet
         };
         game = await _saltnPepperRepository.CreateGame(game);
         var response = new SaltnPepperResponse(game);
         return Ok(response);
 
     }
-    [HttpPost("pick")]
-    public async Task<IActionResult> PickPosition()
+    [HttpPost("pick/{position}")]
+    public async Task<IActionResult> PickPosition(int position)
     {
-        // Picks a mine for the given name
-        // return Ok(await saltnPepperRepository.GetAllGames());
-        return Ok();
+        if (position < 0 || position > 24) return BadRequest("How did you get to here?");
+        // get user
+        var identity = HttpContext.User.Identity as ClaimsIdentity;
+        // Gets list of claims.
+        IEnumerable<Claim> claim = identity!.Claims;
+
+        // Gets name from claims. Generally it's an email address.
+        var idClaim = claim
+            .Where(x => x.Type == ClaimTypes.UserData)
+            .FirstOrDefault()!.Value;
+
+        if (!int.TryParse(idClaim, out var claimedId)) return Unauthorized();
+
+        var game = await _saltnPepperRepository.GetActiveGame(claimedId);
+        if (game == null) return NotFound();
+
+        if (game.Grid[position] == 'x') return BadRequest("Stop Cheating! :)");
+        if (SaltnPepperLogic.IsGameOver(game.Grid!, position))
+        {
+            //TODO: end game
+            game.IsCompleted = true;
+            var bet = game.Bet;
+            bet!.Status = BetStatus.Finished;
+            bet.Multiplier = 0;
+            game = await _saltnPepperRepository.UpdateGame(game);
+            var response = new SaltnPepperResponse(game);
+            return Ok(response);
+        }
+        else
+        {
+            game.Grid = SaltnPepperLogic.PickPosition(game.Grid!, position);
+            game.NumberOfPicks++;
+            game = await _saltnPepperRepository.UpdateGame(game);
+            var bet = game.Bet;
+            bet!.Multiplier = SaltnPepperLogic.CalculateMultiplier(game);
+            var response = new SaltnPepperResponse(game);
+            return Ok(response);
+        }
 
     }
     [HttpPost("cashout")]
     public async Task<IActionResult> CashOut()
     {
-        // End Game
-        return Ok();
-        // return Ok(await saltnPepperRepository.GetAllGames());
+        // SAMe as all the others
+        var identity = HttpContext.User.Identity as ClaimsIdentity;
+        // Gets list of claims.
+        IEnumerable<Claim> claim = identity!.Claims;
+
+        // Gets name from claims. Generally it's an email address.
+        var idClaim = claim
+            .Where(x => x.Type == ClaimTypes.UserData)
+            .FirstOrDefault()!.Value;
+
+        if (!int.TryParse(idClaim, out var claimedId)) return Unauthorized();
+
+        var user = await _usersRepository.GetUserWithId(claimedId);
+        if (user == null) return NotFound();
+        var game = await _saltnPepperRepository.GetActiveGame(claimedId);
+        if (game == null) return NotFound();
+        game.IsCompleted = true;
+        var newBalance = user.Balance + (int)(game.Bet!.Amount * SaltnPepperLogic.CalculateMultiplier(game));
+        System.Console.WriteLine(newBalance);
+        await _usersRepository.UpdateBalance(newBalance, user);
+        await _saltnPepperRepository.UpdateGame(game);
+        
+        var response = new SaltnPepperResponse(game);
+        return Ok(response);
     }
 
 }
