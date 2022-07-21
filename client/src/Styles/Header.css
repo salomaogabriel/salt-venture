@@ -1,0 +1,35 @@
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    top:0;
+    left: 0;
+    right: 0;
+    padding: 10px 20px;    
+    align-items: center;
+    position: fixed;
+    background-color: #1d1d1f;
+}
+.sec-header {
+    height: 80px;
+}
+.salt-balance__icon {
+    width: 28px;
+    height: 28px;
+}
+.balance {
+    color:#aCaAb3;
+    font-weight: 100;
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+} 
+.header__login-btn {
+    border: 0;
+    border-radius: 10px;
+    background-color: #EA4545;
+    color: #E1E1E6;
+    padding: 5px 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
