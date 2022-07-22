@@ -60,6 +60,15 @@ const PageInfoContent: React.FC<Props> = ({ setModalOpen, gameName,user }) => {
           <p className='description'>
             This game is single-player Mine Sweeper.</p>
         }
+        {gameName === "Tenzies" &&
+          <p className='description'>
+            Tenzies is a dice game where the goal is to match all same dice numbers as fast as you can. <br/>
+            <GiFallingStar/> Roll until all dice are the same. <br/>
+            <GiFallingStar/>Click each die to freeze it at its current value between rolls. <br/>
+            
+          </p>
+
+        }
         {user.id == undefined ? 
           <button
           type='button'
@@ -72,7 +81,11 @@ const PageInfoContent: React.FC<Props> = ({ setModalOpen, gameName,user }) => {
         <button
         type='button'
         className='play-button'
-        onClick={() => {setModalOpen(false); navigate('/salt-venture/games/saltandpepper');}}
+        onClick={() => { setModalOpen(false); 
+          {gameName === "Salt & Pepper" && navigate('/salt-venture/games/saltandpepper');}
+          {gameName === "Tenzies" && navigate('/salt-venture/games/tenzies');}
+        
+        }}
       >
         <span>Play</span>
       </button>

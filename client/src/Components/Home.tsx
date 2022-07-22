@@ -6,6 +6,7 @@ import SearchGames from './SearchGames';
 import { AiOutlineSearch } from 'react-icons/ai';
 import MenuBar from './MenuBar';
 import MineSweeper from "../Assets/minesweeper.png"
+import Tenzi from "../Assets/tenzi.png"
 import PageInfo from "./PageInfo";
 import PageInfoContent from "./PageInfoContent";
 import { Link } from 'react-router-dom';
@@ -125,6 +126,14 @@ function Home({ user }: Props) {
             <div className="game">
               <img className="game-img" src="https://play-lh.googleusercontent.com/S1h8A8cR9s1aLOkFwZJjPRaB4HG6DEWwEUOn_x4olAg-d45vTbt65GkJWYyozANaahM" alt="ss"
                 onClick={() => { setModalOpen(true); setGameName("Mine Sweeper") }} />
+              {/* <div className="game-title">Mines</div> */}
+            </div>
+          </div>
+          <h4> Free Games </h4>
+          <div className="games">
+            <div className="game">
+              <img className="game-img" src={Tenzi} alt="ss"
+                onClick={() => { setModalOpen(true); setGameName("Tenzies") }} />
               {/* <div className="game-title">Mines</div> */}
             </div>
           </div>
