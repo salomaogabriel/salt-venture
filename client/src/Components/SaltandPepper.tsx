@@ -182,6 +182,10 @@ function SaltandPepper({ user, updateUser }: Props) {
                 }
                 );
             })
+            if(isCompleted)
+            {
+                setIsPlaying(false);
+            }
             console.log(boxesFromFetch)
             setBoxes({ boxesList: boxesFromFetch, changes: boxes.changes + 1 });
             updateUser({ id: user.id, email: user.email, username: user.username, balance: deserializedJSON.bet.user.balance, token: user.token })

@@ -7,6 +7,7 @@ import Confetti from "react-confetti"
 
 const GameTest = () => {
 
+
   const generateNewDie = () => {
     return {
       value: Math.ceil(Math.random() * 6),
@@ -15,6 +16,7 @@ const GameTest = () => {
     }
   }
   const allNewDice = () => {
+
     const newDice = []
     for (let i = 0; i < 10; i++) {
       newDice.push(generateNewDie())

@@ -163,6 +163,7 @@ public class SaltnPepperController : ControllerBase
         game.IsCompleted = true;
         var newBalance = user.Balance + (int)(game.Bet!.Amount * SaltnPepperLogic.CalculateMultiplier(game));
         System.Console.WriteLine(newBalance);
+        game.Bet.Balance = newBalance;
         await _usersRepository.UpdateBalance(newBalance, user);
         await _saltnPepperRepository.UpdateGame(game);
         
