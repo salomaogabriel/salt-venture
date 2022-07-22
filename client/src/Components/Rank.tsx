@@ -91,7 +91,7 @@ function Rank({ user }: Props) {
             <hr className='rank-title-divider' />
             <div className='rank-list'>
                 <div className='rank-list-item'>
-                    <div className="no-user">No User Found |</div>
+                    <div className="no-user">No User Found</div>
                 </div>
             </div>
         </div>

@@ -4,6 +4,9 @@ import Select from 'react-select/dist/declarations/src/Select';
 import SNPBox from './SNPBox';
 import '../Styles/Snp.css';
 
+import Confetti from "react-confetti"
+
+
 interface Props {
     user: {
         id: number | undefined,
@@ -39,7 +42,9 @@ function SaltandPepper({ user, updateUser }: Props) {
     const snpPeppers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
     const options = snpPeppers.map((e) => { return { value: e, label: e } });
     const [betAmount, setBetAmount] = useState(0);
+    const [currentMultiplier, setMultiplier] = useState(0);
     const [peppers, setPeppers] = useState("1");
+    const [isWin, setIsWin] = useState(false);
     const snpColumns = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
     const [boxesHtml, setBoxesHtml] = useState<any>(<></>);
     const initialBoxes = snpColumns.map((e) => {
@@ -101,6 +106,8 @@ function SaltandPepper({ user, updateUser }: Props) {
         }
     }
     const submitBet = async (e) => {
+        setIsWin(false);
+
         e.preventDefault();
         if (user == undefined) return;
         if (betAmount > user.balance) {
@@ -182,11 +189,14 @@ function SaltandPepper({ user, updateUser }: Props) {
                 }
                 );
             })
-            if(isCompleted)
-            {
+            if (isCompleted) {
                 setIsPlaying(false);
+                setMultiplier(0);
             }
-            console.log(boxesFromFetch)
+            else {
+                setMultiplier(deserializedJSON.bet.multiplier);
+            }
+            console.log(deserializedJSON)
             setBoxes({ boxesList: boxesFromFetch, changes: boxes.changes + 1 });
             updateUser({ id: user.id, email: user.email, username: user.username, balance: deserializedJSON.bet.user.balance, token: user.token })
 
@@ -222,6 +232,11 @@ function SaltandPepper({ user, updateUser }: Props) {
             }
             const deserializedJSON = await response.json();
             setIsPlaying(false);
+            setIsWin(true);
+            setTimeout(() => {
+                setIsWin(false);
+
+            }, 8000)
             setPeppers(deserializedJSON.pepperNumbers);
             let isCompleted = deserializedJSON.isCompleted;
             let boxesFromFetch = deserializedJSON.gridResponse.split("").map((e, index) => {
@@ -252,33 +267,50 @@ function SaltandPepper({ user, updateUser }: Props) {
     }, [boxes])
     return (
         <div className="snp-body">
+            {isWin &&   <div className="confetti-wrapper"> <Confetti className='confetti-disappear' /> </div>}
+
             <form onSubmit={submitBet}>
-                <div className='game-input-wrapper'>
-                    <label className='game-input'>
-                        <p>Bet: </p>
-                        <input type="number" onChange={(e) => setBetAmount(Math.ceil(e.target.valueAsNumber))} placeholder="0" value={betAmount} />
-                        <button onClick={() => setBetAmount(Math.ceil(betAmount / 2))} type="button" >1/2 x</button>
-                        <button onClick={() => setBetAmount(betAmount * 2)} type="button">2 x</button>
-                    </label>
-                    <br />
-                </div>
-                <div className='game-input-wrapper'>
-                    <label className='game-input'>
-                        <select name='pepper' id="pepper" onChange={(e) => {
-                            setPeppers(e.target.value)
-                        }}>
-                            {
-                                options.map((e, index) => {
-                                    return (
-                                        <option key={index} className='dropdown-item' value={e.value}>{e.label}</option>
-                                    )
-                                })
-                            }
-                        </select>
-                        Peppers
-                        <p>2X</p>
-                    </label>
-                </div>
+                {isPlaying ?
+                    <>
+                        <div className="show-multiplier">
+                            Bet Amount: {betAmount}
+                        </div>
+                        <div className="show-multiplier">
+                            Return Amount: {Math.ceil(currentMultiplier * betAmount)}
+                        </div>
+                        <div className="show-multiplier">
+                            Current Multiplier: {currentMultiplier}X
+                        </div>
+                    </> :
+                    <>
+                        <div className='game-input-wrapper'>
+
+                            <label className='game-input-field'>
+                                <p>Bet: </p>
+                                <input className='input-box-snp' type="number" onChange={(e) => setBetAmount(Math.ceil(e.target.valueAsNumber))} placeholder="0" value={betAmount} />
+                                <button className='input-button-snp' onClick={() => setBetAmount(Math.ceil(betAmount / 2))} type="button" >&#xBD;x</button>
+                                <button className='input-button-snp' onClick={() => setBetAmount(betAmount * 2)} type="button">2x</button>
+                            </label>
+                            <br />
+                        </div>
+                        <div className='game-input-wrapper'>
+                            <label className='game-input-field'>
+                                <p>Peppers</p>
+                                <select className='input-button-snp' name='pepper' id="pepper" onChange={(e) => {
+                                    setPeppers(e.target.value)
+                                }}>
+                                    {
+                                        options.map((e, index) => {
+                                            return (
+                                                <option key={index} className='drop-down-item' value={e.value}>{e.label}</option>
+                                            )
+                                        })
+                                    }
+                                </select>
+                            </label>
+                        </div>
+                    </>}
+
                 <div className="snp-grid">
                     {boxesHtml}
                 </div>
@@ -286,7 +318,6 @@ function SaltandPepper({ user, updateUser }: Props) {
                     <button type="submit" className='snp-play__button'>Bet & Play</button>
                     :
                     <button type="button" className='snp-play__button' onClick={cashOut}>Cashout</button>
-
                 }
             </form>
         </div>

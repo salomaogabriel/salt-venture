@@ -8,8 +8,20 @@
     text-decoration: none;
     border: 1px solid transparent;
     transition: 200ms;
-    
+    width: 350px;
 }
+@media only screen and (min-width: 600px) {
+    .rank-list{
+        width: 100%;
+        justify-content: center;
+    }
+    .rank-list-item {
+      width: 100%;
+    }
+    .rank-divider {
+        min-width: 500px;
+    }
+  }
 
 .rank-list-item-info {
     padding-left: 10px;
@@ -29,6 +41,7 @@
 
 .rank-list {
     display: grid;
+    justify-content: center;
 }
 
 .rank-title {
@@ -58,6 +71,8 @@
 .rank-title-divider {
     margin: 20px;
     color: red;
+    max-width: 350px;
+    margin: 20px auto;
 }
 
 .rank-divider {

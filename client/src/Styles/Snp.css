@@ -18,18 +18,28 @@
     border-radius: 10px;
     max-width: 70px;
     max-height: 70px;
+    cursor: pointer;
+    border: 1px solid transparent;
 }
 
+.snp-box:hover {
+    border: 1px solid #ea454534;
+}
 
 .snp-pepper {
+    transition: 400ms;
     background-color: rgb(220, 122, 122);
 }
-.snp-salt img, .snp-pepper img {
+
+.snp-salt img,
+.snp-pepper img {
     width: 100%;
     height: 60px;
+    transition: 400ms;
 }
 
 .snp-salt {
+    transition: 400ms;
     background-color: rgb(129, 228, 129);
 }
 
@@ -53,14 +63,14 @@
     background-color: rgb(205, 60, 60);
 }
 
-.game-input {
+.game-input-field {
     box-sizing: border-box;
     display: flex;
     align-items: center;
     border-radius: 10px;
     color: #8C8A93;
     background-color: #2D2D2F;
-    width: 80%;
+    width: 90%;
     cursor: text;
     font-size: 16px;
     border: 2px solid transparent;
@@ -68,6 +78,22 @@
     max-width: 500px;
     margin-top: 15px;
     margin-bottom: 15px;
+    height: 70px;
+    padding: 10px;
+}
+
+.input-box-snp {
+    font-size: 16px;
+    background-color: transparent;
+    color: whitesmoke;
+    border: 1px solid #8C8A93;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.input-box-snp:focus {
+    outline: none;
+    border-color: #EA4545;
 }
 
 .game-input-wrapper {
@@ -79,3 +105,75 @@
 .snp-body {
     max-height: fit-content;
 }
+
+.snp-shake {
+    border-color: transparent;
+    animation: game-shake 0.5s;
+}
+
+.input-button-snp {
+    background-color: #EA4545;
+    border: 1px solid #EA4545;
+    width: 50px;
+    height: 27px;
+    padding: 4px;
+    cursor: pointer;
+    color: whitesmoke;
+    margin-left: 5px;
+    border-radius: 3px;
+}
+
+.input-button-snp:hover {
+    background-color: #EA4545d2;
+}
+
+.show-multiplier {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    color: #CCCAD3;
+    background-color: #2D2D2F;
+    width: 90%;
+    cursor: text;
+    font-size: 16px;
+    border: 2px solid transparent;
+    justify-content: center;
+    max-width: 500px;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 10px;
+}
+
+.input-button-snp option {
+    background-color: #EA4545;
+}
+
+.confetti-disappear {
+    animation: disappear 8s forwards;
+    width: 100%;
+}
+
+@keyframes disappear {
+    0% {
+        opacity: 1;
+    }
+
+    60% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+.confetti-wrapper {
+    justify-content: center;
+    background-color: red;
+    display: flex;
+}    

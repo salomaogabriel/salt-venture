@@ -5,7 +5,7 @@ import Dice from './Dice';
 import { nanoid } from "nanoid"
 import Confetti from "react-confetti"
 
-const GameTest = () => {
+const Tenzies = () => {
 
 
   const generateNewDie = () => {
@@ -68,7 +68,7 @@ const GameTest = () => {
   return (
     <div className='main'>
       {tenzies && <Confetti />}
-      <h1 className="title">Tenzies</h1>
+      <h1 className="title">&lt;/ Tenzies &gt;</h1>
       <p className="instructions">Roll until all dice are the same.
         Click each die to freeze it at its current value between rolls.</p>
       <div className="dice-container">
@@ -83,4 +83,4 @@ const GameTest = () => {
     </div>
   )
 }
-export default GameTest
+export default Tenzies

@@ -8,6 +8,7 @@ import { FaPencilRuler, FaUserAlt } from 'react-icons/fa';
 import { AiOutlineHome } from 'react-icons/ai';
 import { GiWorld } from 'react-icons/gi';
 import { BiLogOut } from 'react-icons/bi';
+import Logo from '../Assets/logo.png';
 
 interface Props {
   user: {
@@ -61,7 +62,8 @@ const MenuBar = ({ user, logOut }: Props) => {
   if(user.id == undefined)
   {
     return (
-      <>Salt Venture</>
+      // <>Salt Venture</>
+      <><img src={Logo}  className="logo"/></>
     );
   }
   if (isActive === true ) {
