@@ -18,7 +18,7 @@ const PageInfoContent: React.FC<Props> = ({ setModalOpen, gameName,user }) => {
   return (
 
     <div className='pop-up-main'>
-      <p className='title'> &lt;/ {gameName} &gt;</p>
+      <p className='pop-up-title'> &lt;/ {gameName} &gt;</p>
       <div>
         <AiOutlineCloseCircle className='cancel-popup__button' onClick={() => setModalOpen(false)} />
 
@@ -34,31 +34,38 @@ const PageInfoContent: React.FC<Props> = ({ setModalOpen, gameName,user }) => {
         }
         {gameName === "Crash" &&
           <p className='description'>
-            This game is single-player Crash.
+          Crash consists of a line that keeps going up and up, multiplying your bet until it crashes. <br />
+          <GiFallingStar/> During this time period, you are free to cash out whenever you want. <br />
+          <GiFallingStar/>  If you cash out before the random crash, you keep your winnings otherwise, you lose your whole bet. 
           </p>
 
         }
         {gameName === "4 in a row" &&
           <p className='description'>
-            This game is single-player 4 in a row.
+          4 in a row is a 1v1 game where the goal is to get 4 rocks in a row before your opponent does. <br />
+          <GiFallingStar/>  the winner gets all the points betted from the loser, and the loser doesn't get anything.
           </p>
 
         }
         {gameName === "Diamonds" &&
           <p className='description'>
-            This game is single-player Diamonds.
+            Diamonds is a game that is similar to a lottery.
+            You can place between 1 and 24 diamonds, for a higher reward, inside boxes then, depending on the risk value, 
+            a certain number of boxes will be chosen. <br />
+            <GiFallingStar/> If all your diamonds are selected, you win. <br />
+            <GiFallingStar/> You lose everything otherwise.
+            
           </p>
 
         }
-        {gameName === "Tower" &&
+        {gameName === "Dragon Tower" &&
           <p className='description'>
+            The goal of Tower is to get as high as you can in the tower, to get higher rewards. <br />
+            <GiFallingStar/> To do that, in each round, you have to find an egg that has been placed in a box. <br />
+            <GiFallingStar/> If you find an egg, you can go to the next floor, or cashout. <br />
+            <GiFallingStar/> If you don't find it, you lose all your leveraged points.
+            </p>
 
-            This game is single-player Tower.</p>
-
-        }
-        {gameName === "Mine Sweeper " &&
-          <p className='description'>
-            This game is single-player Mine Sweeper.</p>
         }
         {gameName === "Tenzies" &&
           <p className='description'>
@@ -80,7 +87,7 @@ const PageInfoContent: React.FC<Props> = ({ setModalOpen, gameName,user }) => {
         :
         <button
         type='button'
-        className='play-button'
+        className={`play-button ${gameName == "Salt & Pepper" || gameName === "Tenzies" ? "" : "play-button--disabled"}`}
         onClick={() => { setModalOpen(false); 
           {gameName === "Salt & Pepper" && navigate('/salt-venture/games/saltandpepper');}
           {gameName === "Tenzies" && navigate('/salt-venture/games/tenzies');}

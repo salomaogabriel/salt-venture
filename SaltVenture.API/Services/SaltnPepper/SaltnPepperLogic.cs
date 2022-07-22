@@ -72,7 +72,7 @@ public static class SaltnPepperLogic
 
     public static double CalculateMultiplier(SaltnPepper game)
     {
-        if(game.NumberOfPicks == 0) return 0;
+        if(game.NumberOfPicks == 0) return 1;
         try
         {
 

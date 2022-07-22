@@ -82,7 +82,7 @@ function SignIn({updateUser}:Props) {
             setIsLoading(false);
             if(err.message === "")
             {
-                setError({ Password: "User not Found", Username: "", Email: "User not Found" })
+                setError({ Password: "Wrong Password!", Username: "", Email: "User not Found!" })
                 return;
             }
 
