@@ -6,6 +6,14 @@ import {nanoid} from "nanoid"
 import Confetti from "react-confetti"
 
 const GameTest = () => {
+
+  const generateNewDie = () => {
+    return {
+        value: Math.ceil(Math.random() * 6),
+        isHeld: false,
+        id: nanoid()
+    }
+}
   const allNewDice= () =>{
     const newDice = []
     for (let i = 0; i < 10; i++) {
@@ -25,13 +33,7 @@ const GameTest = () => {
       }
   }, [dice])
 
-  const generateNewDie = () => {
-      return {
-          value: Math.ceil(Math.random() * 6),
-          isHeld: false,
-          id: nanoid()
-      }
-  }
+  
 
   
   const rollDice = () => {
