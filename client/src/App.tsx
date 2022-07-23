@@ -13,6 +13,7 @@ import ProfileSettings from './Components/ProfileSettings';
 import SignUpConfirmation from './Components/SignUpConfirmation';
 import SaltandPepper from './Components/SaltandPepper';
 import Tenzies from './Components/Tenzies';
+import Tower from './Components/Tower';
 
 interface User {
   id: number | undefined,
@@ -81,6 +82,7 @@ function App() {
         <Route path="/salt-venture/profile/edit" element={<ProfileSettings user={user} logOut={logOut} updateUser={updateUser} />}></Route>
         <Route path="/salt-venture/signup/confirmation" element={<SignUpConfirmation logOut={logOut} />}></Route>
         <Route path="/salt-venture/games/saltandpepper" element={<SaltandPepper user={user} updateUser={updateUser}/>}></Route>
+        <Route path="/salt-venture/games/tower" element={<Tower user={user} updateUser={updateUser}/>}></Route>
         <Route path="/salt-venture/games/tenzies" element={<Tenzies/>}></Route>
         <Route path="*" element={<Home user={user} />}></Route>
       </Routes>
