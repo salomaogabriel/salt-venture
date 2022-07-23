@@ -9,19 +9,19 @@ namespace SaltVenture.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class SaltnPepperController : ControllerBase
+public class TowerController : ControllerBase
 {
 
-    private readonly ISaltnPepperRepository _saltnPepperRepository;
     private readonly IUsersRepository _usersRepository;
+    private readonly ITowerRepository _towersRepository;
     private readonly IBetsRepository _betsRepository;
-    
 
-    public SaltnPepperController(ISaltnPepperRepository saltnPepperRepository, IUsersRepository usersRepository,
-     IBetsRepository betsRepository)
+    public TowerController(IUsersRepository usersRepository,
+                           ITowerRepository towerRepository,
+                           IBetsRepository betsRepository)
     {
-        _saltnPepperRepository = saltnPepperRepository;
         _usersRepository = usersRepository;
+        _towersRepository = towerRepository;
         _betsRepository = betsRepository;
     }
     [HttpGet]
@@ -39,16 +39,14 @@ public class SaltnPepperController : ControllerBase
 
         if (!int.TryParse(idClaim, out var claimedId)) return Unauthorized();
 
-        var game = await _saltnPepperRepository.GetActiveGame(claimedId);
+        var game = await _towersRepository.GetActiveGame(claimedId);
         if (game == null) return NotFound();
-        // Cheeck if a game exists, return null if it doesn't
-        // return Ok(await saltnPepperRepository.GetAllGames());
-        var response = new SaltnPepperResponse(game);
+        var response = new TowerResponse(game);
         return Ok(response);
 
     }
     [HttpPost]
-    public async Task<IActionResult> CreateGame(SaltnPepperNewGameRequest request)
+    public async Task<IActionResult> CreateGame(TowersNewGameRequest request)
     {
         // get user
         var identity = HttpContext.User.Identity as ClaimsIdentity;
@@ -66,9 +64,9 @@ public class SaltnPepperController : ControllerBase
         if (user == null) return Unauthorized();
 
         if (user.Balance - request.BetAmount < 0) return BadRequest("You Don't Have Enough Points!");
-         var activeGame = await _saltnPepperRepository.GetActiveGame(claimedId);
+         var activeGame = await _towersRepository.GetActiveGame(claimedId);
         if (activeGame != null) {
-            var responseActive = new SaltnPepperResponse(activeGame);
+            var responseActive = new TowerResponse(activeGame);
             return Ok(responseActive);
 
         }
@@ -78,7 +76,7 @@ public class SaltnPepperController : ControllerBase
 
         var bet = new Bet()
         {
-            Game = 0,
+            Game = (int)GameList.Towers,
             Status = BetStatus.NotFinished,
             Amount = request.BetAmount,
             Multiplier = 1,
@@ -88,17 +86,17 @@ public class SaltnPepperController : ControllerBase
         };
         bet = await _betsRepository.CreateBet(bet);
 
-        var game = new SaltnPepper()
+        var game = new Tower()
         {
             User = user,
             IsCompleted = false,
-            Grid = SaltnPepperLogic.GridGenerator(request.PepperAmount),
-            PepperNumbers = request.PepperAmount,
-            NumberOfPicks = 0,
-            Bet = bet
+            Grid = TowerLogic.GridGenerator(request.Level, 9),
+            Bet = bet,
+            Floor = 0
+
         };
-        game = await _saltnPepperRepository.CreateGame(game);
-        var response = new SaltnPepperResponse(game);
+        game = await _towersRepository.CreateGame(game);
+        var response = new TowerResponse(game);
         return Ok(response);
 
     }
@@ -118,32 +116,29 @@ public class SaltnPepperController : ControllerBase
 
         if (!int.TryParse(idClaim, out var claimedId)) return Unauthorized();
 
-        var game = await _saltnPepperRepository.GetActiveGame(claimedId);
+        var game = await _towersRepository.GetActiveGame(claimedId);
         if (game == null) return NotFound();
-
-        if (game.Grid[position] == 'x') return BadRequest("Stop Cheating! :)");
-        if (SaltnPepperLogic.IsGameOver(game.Grid!, position))
+        if(TowerLogic.IsGameOver(game.Grid!,position,game.Floor,TowerLogic.GetFloorSize(game.Level)))
         {
-            //TODO: end game
             game.IsCompleted = true;
             var bet = game.Bet;
             bet!.Status = BetStatus.Finished;
             bet.Multiplier = 0;
-            await _betsRepository.UpdateBet(bet);
-            game = await _saltnPepperRepository.UpdateGame(game);
-            var response = new SaltnPepperResponse(game);
+            game = await _towersRepository.UpdateGame(game);
+            bet = await _betsRepository.UpdateBet(bet);
+
+            var response = new TowerResponse(game);
             return Ok(response);
+
         }
         else
         {
-            game.Grid = SaltnPepperLogic.PickPosition(game.Grid!, position);
-            game.NumberOfPicks++;
-            game = await _saltnPepperRepository.UpdateGame(game);
+            game.Grid = TowerLogic.PickPosition(game.Grid,position,game.Floor,TowerLogic.GetFloorSize(game.Level));
+            game.Floor++;
+            game = await _towersRepository.UpdateGame(game);
             var bet = game.Bet;
-            bet!.Multiplier = SaltnPepperLogic.CalculateMultiplier(game);
-            await _betsRepository.UpdateBet(bet);
-
-            var response = new SaltnPepperResponse(game);
+            bet!.Multiplier = TowerLogic.CalculateMultiplier(game);
+            var response = new TowerResponse(game);
             return Ok(response);
         }
 
@@ -165,17 +160,16 @@ public class SaltnPepperController : ControllerBase
 
         var user = await _usersRepository.GetUserWithId(claimedId);
         if (user == null) return NotFound();
-        var game = await _saltnPepperRepository.GetActiveGame(claimedId);
+        var game = await _towersRepository.GetActiveGame(claimedId);
         if (game == null) return NotFound();
         game.IsCompleted = true;
-        var newBalance = user.Balance + (int)(game.Bet!.Amount * SaltnPepperLogic.CalculateMultiplier(game));
-        System.Console.WriteLine(newBalance);
+        var newBalance = user.Balance + (int)(game.Bet!.Amount * TowerLogic.CalculateMultiplier(game));
         game.Bet.Balance = newBalance;
         await _usersRepository.UpdateBalance(newBalance, user);
-        await _saltnPepperRepository.UpdateGame(game);
+        await _towersRepository.UpdateGame(game);
         await _betsRepository.UpdateBet(game.Bet);
         
-        var response = new SaltnPepperResponse(game);
+        var response = new TowerResponse(game);
         return Ok(response);
     }
 
