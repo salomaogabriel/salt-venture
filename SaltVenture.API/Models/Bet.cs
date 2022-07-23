@@ -11,5 +11,9 @@ public class Bet
     public int Balance {get; set;}
     public DateTime Date {get; set;}
     public User? User {get; set;}
+    public Bet()
+    {
+        Date = DateTime.Now;
+    }
     
 }

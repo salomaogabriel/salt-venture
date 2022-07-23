@@ -19,6 +19,7 @@ public class SaltnPepperResponse
         HidePeppers(game.Grid!);
 
         Bet = game.Bet!;
+        Bet.User = new User(){Balance = Bet.User!.Balance};
     }
     public string HidePeppers(string grid)
     {

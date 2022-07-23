@@ -3,6 +3,7 @@ using SaltVenture.API.Services;
 
 namespace SaltVenture.API.Controllers;
 
+public enum GameList {SaltnPepper, Towers, Tenzies}
 [ApiController]
 [Route("api/[controller]")]
 public class GamesController : ControllerBase
