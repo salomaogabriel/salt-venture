@@ -92,6 +92,7 @@ public class TowerController : ControllerBase
             IsCompleted = false,
             Grid = TowerLogic.GridGenerator(request.Level, 9),
             Bet = bet,
+            Level = request.Level,
             Floor = 0
 
         };

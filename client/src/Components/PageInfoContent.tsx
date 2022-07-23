@@ -87,10 +87,12 @@ const PageInfoContent: React.FC<Props> = ({ setModalOpen, gameName,user }) => {
         :
         <button
         type='button'
-        className={`play-button ${gameName == "Salt & Pepper" || gameName === "Tenzies" ? "" : "play-button--disabled"}`}
+        className={`play-button ${gameName == "Salt & Pepper" || gameName === "Tenzies"
+        || gameName === "Dragon Tower"  ? "" : "play-button--disabled"}`}
         onClick={() => { setModalOpen(false); 
           {gameName === "Salt & Pepper" && navigate('/salt-venture/games/saltandpepper');}
           {gameName === "Tenzies" && navigate('/salt-venture/games/tenzies');}
+          {gameName === "Dragon Tower" && navigate('/salt-venture/games/tower');}
         
         }}
       >
