@@ -14,12 +14,6 @@ public class SaltnPepperRepository : ISaltnPepperRepository
         _context = context;
     }
 
-    public async Task<Bet> CreateBet(Bet bet)
-    {
-        _context.Bets!.Add(bet);
-        await _context.SaveChangesAsync();
-        return bet;
-    }
 
     public async Task<SaltnPepper> CreateGame(SaltnPepper game)
     {
@@ -31,7 +25,7 @@ public class SaltnPepperRepository : ISaltnPepperRepository
     public async Task<SaltnPepper> GetActiveGame(int claimedId)
     {
         return await _context.SaltnPeppersGames
-            .Include(c => c.Bet)
+            .Include(c => c.Bet.User)
             .OrderBy(c => c.Id).LastOrDefaultAsync(g => g.User.Id == claimedId && !g.IsCompleted);
     }
 
@@ -40,12 +34,7 @@ public class SaltnPepperRepository : ISaltnPepperRepository
         return await _context.SaltnPeppersGames.FirstOrDefaultAsync(g => g.Id == gameId);
     }
 
-    public async Task<Bet> LostBet(Bet bet)
-    {   
-       var updateBet = _context.Bets?.Update(bet);
-        await _context.SaveChangesAsync();
-        return updateBet!.Entity;
-    }
+
 
     public async Task<SaltnPepper> UpdateGame(SaltnPepper game)
     {

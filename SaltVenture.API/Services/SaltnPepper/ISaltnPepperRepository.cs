@@ -9,6 +9,5 @@ public interface ISaltnPepperRepository
     Task<SaltnPepper> GetGame(int gameId);
     Task<SaltnPepper> CreateGame(SaltnPepper game);
     Task<SaltnPepper> UpdateGame(SaltnPepper game);
-    Task<Bet> LostBet(Bet bet);
-    Task<Bet> CreateBet(Bet bet);
+
 }
