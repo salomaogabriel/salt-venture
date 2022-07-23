@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/salt-venture/static/css/main.dd2d7753.css",
-    "main.js": "/salt-venture/static/js/main.c275d9ee.js",
+    "main.js": "/salt-venture/static/js/main.07af4641.js",
     "static/js/787.c4e7f8f9.chunk.js": "/salt-venture/static/js/787.c4e7f8f9.chunk.js",
     "static/media/logo.png": "/salt-venture/static/media/logo.860184b869baebda1101.png",
     "static/media/salt&pepper.png": "/salt-venture/static/media/salt&pepper.2a8a374766cca3b5e3ca.png",
@@ -10,11 +10,11 @@
     "static/media/pepper.png": "/salt-venture/static/media/pepper.57d2ef563c4ca620eadc.png",
     "index.html": "/salt-venture/index.html",
     "main.dd2d7753.css.map": "/salt-venture/static/css/main.dd2d7753.css.map",
-    "main.c275d9ee.js.map": "/salt-venture/static/js/main.c275d9ee.js.map",
+    "main.07af4641.js.map": "/salt-venture/static/js/main.07af4641.js.map",
     "787.c4e7f8f9.chunk.js.map": "/salt-venture/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.dd2d7753.css",
-    "static/js/main.c275d9ee.js"
+    "static/js/main.07af4641.js"
   ]
 }
