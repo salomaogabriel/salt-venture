@@ -72,12 +72,19 @@ function Profile({ user }: Props) {
             </>
         );
     }
-    if (userData.id == undefined) return (<><div className="wave-animation">
-        <div className="wave" style={{ "--w": "0s" } as React.CSSProperties} ></div>
-        <div className="wave" style={{ "--w": "0.4s" } as React.CSSProperties}></div>
-        <div className="wave" style={{ "--w": "0.8s" } as React.CSSProperties}></div>
-        <div className="wave" style={{ "--w": "1.2s" } as React.CSSProperties}></div>
-    </div></>);
+    if (userData.id == undefined)     return (<>
+        <div className="profile-image loading-profile-image loading"> 
+        </div>
+        <div className='profile-list'>
+        <p className='profile-list-item loading loading-profile-list-item' > </p>
+        <p className='profile-list-item loading loading-profile-list-item' > </p>
+        <p className='profile-list-item loading loading-profile-list-item'></p>
+
+        </div>
+        <hr className='rank-divider' />
+        <div className="profile-graph loading loading-profile-graph"></div>
+    </>);
+
     return (
         <div>
             <>
