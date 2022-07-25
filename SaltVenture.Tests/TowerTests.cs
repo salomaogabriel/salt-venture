@@ -4,6 +4,7 @@ using SaltVenture.API.Services;
 using SaltVenture.API.Models.Games;
 using System.Linq;
 using System;
+using SaltVenture.API.Models;
 
 namespace SaltVenture.Tests;
 
@@ -193,13 +194,14 @@ public class TowerTests
         var game = new Tower()
         {
             Grid = grid,
+            Bet = new Bet() {User = new User()},
+
             IsCompleted = true
         };
         var result = new TowerResponse(game);
         result.GridResponse.Should().Be(grid);
     }
     [Theory]
-
     [InlineData("",0,"")]
     [InlineData("1110",0,"2222")]
     [InlineData("11101110",0,"22222222")]
@@ -214,7 +216,8 @@ public class TowerTests
             Level = TowerLevels.Easy,
             Grid = grid,
             IsCompleted = false,
-            Floor = floor
+            Floor = floor,
+            Bet = new Bet() {User = new User()}
         };
         var result = new TowerResponse(game);
         result.GridResponse.Should().Be(expectedGrid);

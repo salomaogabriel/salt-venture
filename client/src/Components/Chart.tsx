@@ -20,23 +20,6 @@ ChartJS.register(
     Legend
   );
 function Chart({labels, data, label, color}) {
-    // const options = {
-    //     responsive: true,
-    //     scales: {
-    //         y: {
-    //           max: maxRatingOffset,
-    //         },
-    //     },
-    //     plugins: {
-    //       legend: {
-    //         position: 'top',
-    //       },
-    //       title: {
-    //         display: true,
-    //         text: title,
-    //       },
-    //     },
-    //   };
       const dataFormatted = {
         labels,
         datasets: [

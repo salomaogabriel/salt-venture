@@ -39,13 +39,13 @@ public static class SaltnPepperLogic
         var gameString = new List<char>("0000000000000000000000000");
         if (pepperAmount > 24) throw new ArgumentException("Pepper Amount Can't Exceed 24");
         if (pepperAmount < 1) throw new ArgumentException("Pepper Amount Has To Be Bigger Than 0");
+        counter = 0;
         while (counter < pepperAmount)
         {
-            counter = 0;
             for (var i = 0; i < 25; i++)
             {
                 if (counter == pepperAmount) break;
-                if (gameString[i] == '1') counter += 1;
+                if (gameString[i] == '1') continue;
                 else
                 {
                     if (rnd.Next(0, 100) < 4)
@@ -54,13 +54,16 @@ public static class SaltnPepperLogic
                         counter++;
                     }
                 }
+
             }
+
         }
-        System.Console.WriteLine(new string(gameString.ToArray()));
         return new string(gameString.ToArray());
     }
     public static bool IsGameOver(string grid, int gridPosition)
     {
+        if(gridPosition < 0) throw new ArgumentException("The position must be bigger than 0!");
+        if(gridPosition >= grid.Length) throw new ArgumentException("The position must be smaller than the grid length!");
         return grid[gridPosition] == '1';
     }
     public static string PickPosition(string grid, int gridPosition)
@@ -72,13 +75,13 @@ public static class SaltnPepperLogic
 
     public static double CalculateMultiplier(SaltnPepper game)
     {
-        if(game.NumberOfPicks == 0) return 1;
+        if (game.NumberOfPicks == 0) return 1;
         try
         {
 
             return _multipliers[game.NumberOfPicks - 1][game.PepperNumbers - 1];
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             return 1;
         }

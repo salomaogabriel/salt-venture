@@ -212,3 +212,31 @@
 .profile-error {
     font-size: 10px;
 }
+.loading-profile-image
+{
+    width: 30px;
+    height: 30px;
+}
+.loading {
+    background-color: rgb(179, 179, 179);
+    background-size: 200px 100%;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(90deg, rgba(0, 0, 0, 0), rgb(255, 255, 255), rgba(0, 0, 0, 0));
+    opacity: 0.1;
+    animation: 1.2s ease-in-out 0s infinite normal none running skeleton;
+}
+.loading-profile-list-item {
+    width: 30vw;
+}
+.loading-profile-graph {
+    height:40vw;
+}
+@keyframes skeleton {
+    0% {
+        background-position: -200px 0px;
+    }
+    100% {
+        background-position: calc(200px + 100%) 0px;
+    }
+    
+}
