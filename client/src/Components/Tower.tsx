@@ -43,6 +43,8 @@ function mapBoxes(arr)
 }
 function Tower({ user, updateUser }: Props) {
     const empty = [1,2,3,4,5,6,7,8,9];
+    const [currentMultiplier, setMultiplier] = useState(0);
+
     const [isWin, setIsWin] = useState(false);
 
     let boxes = [0,1,2,3];
@@ -127,6 +129,8 @@ function Tower({ user, updateUser }: Props) {
             updateUser({ id: user.id, email: user.email, username: user.username, balance: deserializedJSON.bet.user.balance, token: user.token })
 
             }
+            setMultiplier(deserializedJSON.bet.multiplier);
+
             console.log(deserializedJSON)
             setTower({currentFloor:deserializedJSON.floor, floors:floors});
            
@@ -170,7 +174,10 @@ function Tower({ user, updateUser }: Props) {
             }
             //TODO: set current Game
             const deserializedJSON = await response.json();
+            console.log(deserializedJSON)
             const grid = deserializedJSON.gridResponse.split("");
+
+            setMultiplier(deserializedJSON.bet.multiplier);
             setIsPlaying(true);
             const squareNo = levels[parseInt(level)].squares
             boxes = Array.from(Array(squareNo).keys())
@@ -236,6 +243,7 @@ function Tower({ user, updateUser }: Props) {
             const deserializedJSON = await response.json();
             const grid = deserializedJSON.gridResponse.split("");
             setIsPlaying(true);
+            setMultiplier(1);
             const squareNo = levels[parseInt(level)].squares
             boxes = Array.from(Array(squareNo).keys())
             let floors : Array<Floor | undefined> = [];
@@ -289,6 +297,8 @@ function Tower({ user, updateUser }: Props) {
             const deserializedJSON = await response.json();
             const grid = deserializedJSON.gridResponse.split("");
             setIsPlaying(false);
+            setMultiplier(1);
+
             const squareNo = levels[parseInt(level)].squares
             boxes = Array.from(Array(squareNo).keys())
             let floors : Array<Floor | undefined> = [];
@@ -324,6 +334,19 @@ function Tower({ user, updateUser }: Props) {
     return (
         <form className='tower-wrapper' onSubmit={submitBet}>
              {isWin &&   <div className="confetti-wrapper"> <Confetti className='confetti-disappear' /> </div>}
+             {isPlaying ?
+                    <>
+                        <div className="show-multiplier">
+                            Bet Amount: {betAmount}
+                        </div>
+                        <div className="show-multiplier">
+                            Return Amount: {Math.ceil(currentMultiplier * betAmount)}
+                        </div>
+                        <div className="show-multiplier">
+                            Current Multiplier: {currentMultiplier}X
+                        </div>
+                    </> :
+                    <>
             <div className='game-input-wrapper'>
 
                 <label className='game-input-field'>
@@ -350,6 +373,7 @@ function Tower({ user, updateUser }: Props) {
                     </select>
                 </label>
             </div>
+            </>}
             <div className="tower">
                {towerHtml}
                
