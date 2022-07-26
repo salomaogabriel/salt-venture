@@ -141,6 +141,8 @@ public class SaltnPepperController : ControllerBase
             game = await _saltnPepperRepository.UpdateGame(game);
             var bet = game.Bet;
             bet!.Multiplier = SaltnPepperLogic.CalculateMultiplier(game);
+            bet!.Status = BetStatus.Finished;
+
             await _betsRepository.UpdateBet(bet);
 
             var response = new SaltnPepperResponse(game);

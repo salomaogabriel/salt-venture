@@ -66,7 +66,7 @@ function Admin({ user, logout }: Props) {
                 username: deserializedJSON.username,
                 email: deserializedJSON.email,
                 balance: deserializedJSON.balance,
-                bets: [...deserializedJSON.bets["$values"], { game: -1, balance: deserializedJSON.balance }]
+                bets: [...deserializedJSON.bets["$values"]]
             });
             setIsSeeingUser(true);
 
@@ -225,11 +225,10 @@ function Admin({ user, logout }: Props) {
                                 let multiplierClass = "";
                                 if (b.multiplier < 1) multiplierClass = "multiplier-red"
                                 if (b.multiplier > 2) multiplierClass = "multiplier-green"
-                                if (b.status == 1)
                                     return (<div className='admin-bet-list-item'>
                                         <img src={b.game == 0 ? SaltnPepper : "https://mediumrare.imgix.net/2c3e16f0a3b8cd8d979265e48dd6a169937a4a4d0acb05ad532ca8345a1e6f21?q=85"} alt="Game" className='admin-bet-list-item__img' />
                                         <p className="admin-list-item-amount-info">
-                                            {b.amount} x <span className={multiplierClass}>{b.multiplier}</span>
+                                            {b.amount} x <span className={`admin-multiplier-span ${multiplierClass}`}>{b.multiplier}</span>
                                         </p>
                                     </div>)
                             })}
