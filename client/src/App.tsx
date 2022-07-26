@@ -83,7 +83,7 @@ function App() {
         <Route path="/salt-venture/signup/confirmation" element={<SignUpConfirmation logOut={logOut} />}></Route>
         <Route path="/salt-venture/games/saltandpepper" element={<SaltandPepper user={user} updateUser={updateUser}/>}></Route>
         <Route path="/salt-venture/games/tower" element={<Tower user={user} updateUser={updateUser}/>}></Route>
-        <Route path="/salt-venture/games/tenzies" element={<Tenzies/>}></Route>
+        <Route path="/salt-venture/games/tenzies" element={<Tenzies user={user} updateUser={updateUser}/>}></Route>
         <Route path="*" element={<Home user={user} />}></Route>
       </Routes>
 }
