@@ -10,6 +10,7 @@ public class SaltVentureDbContext : DbContext
     public DbSet<Game>? Games { get; set; }
     public DbSet<SaltnPepper>? SaltnPeppersGames { get; set; }
     public DbSet<Tower>? TowersGames { get; set; }
+    public DbSet<Hangman>? HangmanGames { get; set; }
     public DbSet<User>? Users { get; set; }
     public DbSet<Bet>? Bets { get; set; }
     public SaltVentureDbContext(DbContextOptions<SaltVentureDbContext> options)
