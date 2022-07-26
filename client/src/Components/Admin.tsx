@@ -68,6 +68,7 @@ function Admin({ user, logout }: Props) {
             setLabels(templabels)
             setChartData(tempData);
             setData(deserializedJSON);
+            console.log(deserializedJSON);
         }
         catch (err) {
             console.log(err);
@@ -102,6 +103,7 @@ function Admin({ user, logout }: Props) {
             <div className="admin-info-graph">
                 <Bar data={dataChart} />
             </div>
+            {data.possibleFraudulentUSers ? <></> : <></>}
         </div>
     );
 }

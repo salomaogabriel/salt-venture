@@ -50,6 +50,7 @@ public class AdminRepository : IAdminRepository
         response.UsersMoneyRange = usersRange;
         response.PossibleFraudulentUSers = PossibleFraudulentUsers;
         response.UsersNo = users.Count();
+        response.BetsMade = _context.Bets!.Count();
         response.ActiveUsersNo = users.Where(u => u.IsActive).Count();
         return response;
     }
