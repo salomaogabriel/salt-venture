@@ -92,19 +92,20 @@ const Tenzies = ({ user, updateUser }: Props)=> {
   const getReward = async () => {
     if (user == undefined) return;
     const requestSettings = {
-        method: 'POST',
-        headers: {
-            'Authorization': "Bearer " + user.token,
-            "Content-Type": "application/json"
-        }
-    };
+      method: 'POST',
+      headers: {
+          'Authorization': "Bearer " + user.token,
+          "Content-Type": "application/json"
+      }
+  };
     try {
         const response = await fetch("https://saltventure.azurewebsites.net/api/tenzies/getreward", requestSettings)
         if (!response.ok) {
             throw new Error(JSON.stringify(await response.json()));
         }
-        const deserializedJSON = await response.json();    
-        updateUser({ id: user.id, email: user.email, username: user.username, balance: deserializedJSON.user.balance, token: user.token })
+        const deserializedJSON = await response.json();  
+        console.log(deserializedJSON);
+        updateUser({ id: user.id, email: user.email, username: user.username, balance: deserializedJSON.balance, token: user.token })
 
     }
     catch (err) {
