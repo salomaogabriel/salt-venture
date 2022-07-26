@@ -27,7 +27,7 @@ interface User {
 }
 
 const Tenzies = ({ user, updateUser }: Props)=> {
-
+  const [disable, setDisable] = useState(false);
   const [counter, setCounter] = useState(60);
   useEffect(() => {
     counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
@@ -92,19 +92,20 @@ const Tenzies = ({ user, updateUser }: Props)=> {
   const getReward = async () => {
     if (user == undefined) return;
     const requestSettings = {
-        method: 'POST',
-        headers: {
-            'Authorization': "Bearer " + user.token,
-            "Content-Type": "application/json"
-        }
-    };
+      method: 'POST',
+      headers: {
+          'Authorization': "Bearer " + user.token,
+          "Content-Type": "application/json"
+      }
+  };
     try {
         const response = await fetch("https://saltventure.azurewebsites.net/api/tenzies/getreward", requestSettings)
         if (!response.ok) {
             throw new Error(JSON.stringify(await response.json()));
         }
-        const deserializedJSON = await response.json();    
-        updateUser({ id: user.id, email: user.email, username: user.username, balance: deserializedJSON.user.balance, token: user.token })
+        const deserializedJSON = await response.json();  
+        console.log(deserializedJSON);
+        updateUser({ id: user.id, email: user.email, username: user.username, balance: deserializedJSON.balance, token: user.token })
 
     }
     catch (err) {
@@ -117,6 +118,7 @@ const Tenzies = ({ user, updateUser }: Props)=> {
   return (
     <div className='main'>
       {tenzies && <Confetti /> }
+   
       
       <h1 className="title">&lt;/ Tenzies &gt;</h1>
       <p className="instructions">Roll until all dice are the same.
@@ -125,10 +127,10 @@ const Tenzies = ({ user, updateUser }: Props)=> {
       <div className="dice-container">
         {diceElements}
       </div>
-      <> {tenzies && <button onClick={getReward}>Get Reward</button>}</>
+      <div > {tenzies && <button className="reward-button" disabled={disable} onClick={() => {setDisable(true); getReward();}}>Get Reward</button>}</div>
       <button
         className="roll-dice"
-        onClick={rollDice}
+        onClick={() => {setDisable(false); rollDice();}}
       >
         {tenzies ? "New Game" : "Roll"}
       </button>

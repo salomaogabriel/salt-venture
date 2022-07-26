@@ -22,12 +22,13 @@ public class JwtAuthenticationService : IJwtAuthenticationService
 
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(_tokenKey);
+        var role = user.Username == "admin" ? "admin" : "user";
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(new Claim[]
             {
                     new Claim(ClaimTypes.Email, user.Email!),
-                    new Claim(ClaimTypes.Role, "user"),
+                    new Claim(ClaimTypes.Role, role),
                     new Claim(ClaimTypes.UserData, user.Id.ToString()),
             }),
             Expires = DateTime.UtcNow.AddHours(48),

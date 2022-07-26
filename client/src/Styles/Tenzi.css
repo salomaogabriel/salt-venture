@@ -73,3 +73,24 @@
 .roll-dice:active {
     box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
 }
+.reward-button {
+    display: flex;
+    justify-content: center;
+    background-color: #9dd126;
+    color: rgb(70, 58, 58);
+    font-size: 12px;
+    border: transparent;
+    border-radius: 10px;
+    padding-right: 18px;
+    padding-left: 18px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: -10px;
+    cursor: pointer;
+}
+.reward-button:disabled,
+.reward-button[disabled]{
+  border: 1px solid #922626;
+  background-color: #836d6d;
+  color: #29d8de;
+}
