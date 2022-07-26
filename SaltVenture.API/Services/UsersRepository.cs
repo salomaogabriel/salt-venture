@@ -98,15 +98,15 @@ public class UsersRepository : IUsersRepository
     public async Task<User> UpdateUser(User user, UserUpdateRequest request)
     {
        
-        if (request.Password != "")
+        if (!string.IsNullOrEmpty(request.Password))
         {
             user.Password = request.Password;
         }
-        if (request.Email != "")
+        if (!string.IsNullOrEmpty(request.Email))
         {
             user.Email = request.Email;
         }
-        if (request.Username != "")
+        if (!string.IsNullOrEmpty(request.Username))
         {
             user.Username = request.Username;
         }
@@ -131,14 +131,5 @@ public class UsersRepository : IUsersRepository
         await _context.SaveChangesAsync();
         return updateduser!.Entity;
 
-    }
-
-    public async Task<User> UpdateUserBalance(int id, int amount)
-    {
-        var user = await GetUserWithId(id);
-         user.Balance = user.Balance + amount;
-        var updateduser = _context.Users?.Update(user);
-        await _context.SaveChangesAsync();
-        return updateduser!.Entity;
     }
 }
