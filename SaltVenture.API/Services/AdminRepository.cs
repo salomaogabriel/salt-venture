@@ -45,7 +45,7 @@ public class AdminRepository : IAdminRepository
         System.Console.WriteLine(limit);
 
         var PossibleFraudulentUsers = await _context.Users!
-            .Where(u => u.Bets!.Average(b => b.Multiplier) > limit).Select(u => new UserRankResponse(u)).ToListAsync();
+            .Where(u => u.Bets!.Average(b => b.Multiplier) > limit && u.IsActive).Select(u => new UserRankResponse(u)).ToListAsync();
         response.HouseWinnings = moneyMade;
         response.UsersMoneyRange = usersRange;
         response.PossibleFraudulentUSers = PossibleFraudulentUsers;
