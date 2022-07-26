@@ -77,7 +77,7 @@ function Home({ user }: Props) {
             </select>
           )}
         <div>
-        <h4> Recent </h4>
+          <h4> Recent </h4>
           <div className="games">
             <div className="game">
               <img className="game-img" src={SaltandPepper} alt="Salt and Pepper"
@@ -86,6 +86,11 @@ function Home({ user }: Props) {
             <div className="game">
               <img className="game-img" src={Tenzi} alt="ss"
                 onClick={() => { setModalOpen(true); setGameName("Tenzies") }} />
+            </div>
+            <div className="game">
+
+              <img className="game-img" src="https://mediumrare.imgix.net/2c3e16f0a3b8cd8d979265e48dd6a169937a4a4d0acb05ad532ca8345a1e6f21?q=85" alt="ss"
+                onClick={() => { setModalOpen(true); setGameName("Dragon Tower") }} />
             </div>
           </div>
           <h4> Most Popular</h4>
@@ -114,7 +119,7 @@ function Home({ user }: Props) {
           </div>
         </div>
         <div>
-         
+
           <h4> Free Games </h4>
           <div className="games">
             <div className="game">

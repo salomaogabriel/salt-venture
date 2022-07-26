@@ -25,7 +25,9 @@ interface userData {
 
 function Rank({ user }: Props) {
     const [data, setData] = useState<Array<userData | undefined>>([]);
+    const [isLoading, setIsLoading] = useState(true);
     const getUsers = async (usernameLike?) => {
+        setIsLoading(true);
         if (user.id == undefined) return;
         const requestSettings = {
             method: 'GET',
@@ -43,6 +45,8 @@ function Rank({ user }: Props) {
             }
             const deserializedJSON = await response.json();
             console.log(deserializedJSON)
+            setIsLoading(false);
+
             setData(deserializedJSON["$values"]);
         }
         catch (err) {
@@ -52,6 +56,37 @@ function Rank({ user }: Props) {
     useEffect(() => {
         getUsers();
     }, [user])
+    if(isLoading)
+    {
+        return(
+            <div>
+            <h1 className='rank-title'>Rankings</h1>
+            <label className='search-bar-rank'>
+                <input type="search" name="search" onChange={(e) => getUsers(e.target.value)} placeholder="search user" /> <AiOutlineSearch />
+            </label>
+            <hr className='rank-title-divider' />
+            <div className='rank-list'>
+                <div className='rank-list-item loading loading-rank-list-item'>
+                </div>
+                <div className='rank-list-item loading loading-rank-list-item'>
+                </div>
+                <div className='rank-list-item loading loading-rank-list-item'>
+                </div>
+                <div className='rank-list-item loading loading-rank-list-item'>
+                </div>
+                <div className='rank-list-item loading loading-rank-list-item'>
+                </div>
+                <div className='rank-list-item loading loading-rank-list-item'>
+                </div>
+                <div className='rank-list-item loading loading-rank-list-item'>
+                </div>
+
+                <div className='rank-list-item loading loading-rank-list-item'>
+                </div>
+            </div>
+        </div>
+        )
+    }
     if (data.length != 0) {
 
         return (
