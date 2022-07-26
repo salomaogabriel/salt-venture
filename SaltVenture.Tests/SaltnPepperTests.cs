@@ -118,5 +118,64 @@ public class SaltnPepperTests
 
         result.Should().Be(newGrid);
     }
+
+    [Fact]
+    public void should_throw_when_picked_pos_smaller_than_0()
+    {
+        var act = () => SaltnPepperLogic.PickPosition("1111",-2);
+        act.Should().Throw<ArgumentException>().WithMessage("Picked position should be biggeer than 0!");
+    }
+    [Fact]
+    public void should_throw_when_picked_pos_bigger_than_grid_size()
+    {
+        var act = () => SaltnPepperLogic.PickPosition("1111",4);
+        act.Should().Throw<ArgumentException>().WithMessage("Picked position should be smaller than the grid size!");
+    }
+    #endregion
+
+    #region Multiplier Test
+    [Theory]
+    [InlineData(0,0,1)]
+    [InlineData(1,0,1)]
+    [InlineData(24,0,1)]
+    [InlineData(25,0,1)]
+    [InlineData(1,1,1.03)]
+    [InlineData(24,2,1)]
+    // CHecking if the multipliers are rigth (Helped on 16,9)
+    [InlineData(24,1,24.75)]
+    [InlineData(23,2,297)]
+    [InlineData(22,3,2277)]
+    [InlineData(21,4,12523.5)]
+    [InlineData(20,5,52598.7)]
+    [InlineData(19,6,175329)]
+    [InlineData(18,7,475893)]
+    [InlineData(17,8,1070759.25)]
+    [InlineData(16,9,2022545.25)]
+    [InlineData(15,10,3236072.4)]
+    [InlineData(14,11,4412826)]
+    [InlineData(13,12,5148297)]
+    [InlineData(12,13,5148297)]
+    [InlineData(11,14,4412826)]
+    [InlineData(10,15,3236072.4)]
+    [InlineData(9,16,2022545.25)]
+    [InlineData(8,17,1070759.25)]
+    [InlineData(7,18,475893)]
+    [InlineData(6,19,175328)]
+    [InlineData(5,20,52598.7)]
+    [InlineData(4,21,12523.5)]
+    [InlineData(3,22,2277)]
+    [InlineData(2,23,297)]
+    [InlineData(1,24,24.75)]
+
+    public void CheckMultipliers(int numberOfPeppers,int pickRound, double expected)
+    {
+        var game = new SaltnPepper()
+        {
+            NumberOfPicks = pickRound,
+            PepperNumbers = numberOfPeppers
+        };
+        var result = SaltnPepperLogic.CalculateMultiplier(game);
+        result.Should().Be(expected);
+    }
     #endregion
 }
