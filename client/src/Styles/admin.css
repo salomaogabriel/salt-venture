@@ -1,0 +1,55 @@
+.admin-list-item {
+    display: flex;
+    justify-content: space-between;
+    background-color: #2D2D2F;
+    margin: 20px;
+    border-radius: 10px;
+    padding: 2px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: 200ms;
+    align-items: center;
+}
+.admin-list-item-info
+{
+    display: flex;
+
+}
+.admin-list-item-button
+{
+    margin: 5px;
+    color: aliceblue;
+    background-color: transparent;
+    border: 2px solid aliceblue;
+    border-radius: 5px;
+    transition: 400ms;
+    padding: 7px;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 900;
+    cursor: pointer;
+}
+.admin-list-item-button:hover {
+    background-color: aliceblue;
+    color: #2D2D2F;
+}
+
+.admin-list-item-buttons--delete{
+    margin: 5px;
+    border-radius: 5px;
+    transition: 400ms;
+    padding: 7px;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 900;
+    cursor: pointer;
+    color: #2D2D2F;
+    background-color: rgba(255, 159, 64, 1);
+
+    border: 2px solid rgba(255, 159, 64, 1);
+}
+.admin-list-item-buttons--delete:hover{
+    background-color: rgba(255, 159, 64, 0.2);
+    color: #e1e1ea;
+
+}
