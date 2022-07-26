@@ -63,6 +63,7 @@ function Home({ user }: Props) {
         </div>
 
         <p className='search-games-title'> What do you want to Play?</p>
+        
         <label className='search-bar-rank'>
 
           <input type="search" name="search" placeholder="search games" /> <AiOutlineSearch />
@@ -79,7 +80,7 @@ function Home({ user }: Props) {
           <h4> Recent </h4>
           <div className="games">
             <div className="game">
-              <img className="game-img" src={SaltandPepper} alt="Salt & Pepper"
+              <img className="game-img" src={SaltandPepper} alt="Salt and Pepper"
                 onClick={() => { setModalOpen(true); setGameName("Salt & Pepper") }} />
             </div>
             <div className="game">
