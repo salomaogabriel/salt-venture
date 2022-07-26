@@ -28,7 +28,7 @@ public class AdminRepository : IAdminRepository
         {
             moneyMade += (1000 - user.Balance);
         }
-        foreach (var item in users.OrderBy(u => u.Balance).GroupBy(u => (int)Math.Ceiling((double)u.Balance / 100) * 100))
+        foreach (var item in users.Where(u => u.IsActive).OrderBy(u => u.Balance).GroupBy(u => (int)Math.Ceiling((double)u.Balance / 100) * 100))
         {
             usersRange.Add(item.Key, item.Count());
         }
