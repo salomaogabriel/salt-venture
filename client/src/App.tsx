@@ -14,6 +14,7 @@ import SignUpConfirmation from './Components/SignUpConfirmation';
 import SaltandPepper from './Components/SaltandPepper';
 import Tenzies from './Components/Tenzies';
 import Tower from './Components/Tower';
+import Admin from './Components/Admin';
 
 interface User {
   id: number | undefined,
@@ -53,6 +54,10 @@ function App() {
     }
   }, [])
 
+  if(user.username != undefined && user.username == "admin")
+  {
+    return (<Admin user={user} logout={logOut} />)
+  }
 
   return (
     <div className="App">
