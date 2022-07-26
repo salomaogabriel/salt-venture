@@ -132,4 +132,13 @@ public class UsersRepository : IUsersRepository
         return updateduser!.Entity;
 
     }
+
+    public async Task<User> UpdateUserBalance(int id, int amount)
+    {
+        var user = await GetUserWithId(id);
+         user.Balance = user.Balance + amount;
+        var updateduser = _context.Users?.Update(user);
+        await _context.SaveChangesAsync();
+        return updateduser!.Entity;
+    }
 }

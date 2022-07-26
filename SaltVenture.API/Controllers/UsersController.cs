@@ -158,6 +158,22 @@ public class UsersController : ControllerBase
         return Ok(response);
     }
 
+
+  [HttpPatch("{id}/coins")]
+    public async Task<IActionResult> UpdateUserBalance(int id, int amount)
+    {
+        var user = await _usersRepository.GetUserWithId(id);
+        var oldBalance = user.Balance;
+        System.Console.WriteLine("balance: " + oldBalance);
+        if (user == null) return NotFound();
+        // Change Balance
+       
+        user = await _usersRepository.UpdateBalance(user.Balance + amount, user);
+
+        return Ok();
+    }
+
+
     [HttpDelete]
     public async Task<IActionResult> DeleteUser()
     {

@@ -8,7 +8,7 @@ import { FaPencilRuler, FaUserAlt } from 'react-icons/fa';
 import { AiOutlineHome } from 'react-icons/ai';
 import { GiWorld } from 'react-icons/gi';
 import { BiLogOut } from 'react-icons/bi';
-import Logo from '../Assets/logo.png';
+import Logo from '../Assets/logo6.png';
 
 interface Props {
   user: {

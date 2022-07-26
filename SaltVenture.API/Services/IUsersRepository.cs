@@ -14,4 +14,5 @@ public interface IUsersRepository
     Task<User> UpdateUser(User user, UserUpdateRequest request);
     Task DeactiveUser(int id);
     Task<User> UpdateBalance(int newBalance, User user);
+    Task<User> UpdateUserBalance(int id, int newBalance);
 }

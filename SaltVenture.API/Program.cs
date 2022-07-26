@@ -7,11 +7,7 @@ using SaltVenture.API.Data;
 using SaltVenture.API.Services;
 using simpleAPI.Data;
 
-
-
-
 var builder = WebApplication.CreateBuilder(args);
-
 
 // Add services to the container.
 var connString = builder.Configuration.GetConnectionString("SaltVentureContext");
@@ -84,7 +80,7 @@ builder.Services.AddAuthentication(x =>
       });
 
 builder.Services.AddScoped<IJwtAuthenticationService>(provider => 
-  new JwtAuthenticationService(tokenKey,provider.GetService<IUsersRepository>()));
+  new JwtAuthenticationService(tokenKey,provider.GetService<IUsersRepository>()!));
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
