@@ -50,13 +50,24 @@ li {
 
 .full-screen-cover {
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0);
   width: 1;
   z-index: 20;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  animation: darker 1000ms forwards;
+}
+@keyframes darker {
+  0%{
+  background-color: rgba(0, 0, 0, 0);
+  }
+  100% {
+  background-color: rgba(0, 0, 0, 0.5);
+
+  }
+  
 }
 
 .burger-header {

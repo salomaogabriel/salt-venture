@@ -2,7 +2,6 @@
     display: flex;
     justify-content: space-between;
     background-color: #2D2D2F;
-    margin: 20px;
     border-radius: 10px;
     padding: 2px;
     text-decoration: none;
@@ -33,7 +32,22 @@
     background-color: aliceblue;
     color: #2D2D2F;
 }
-
+.admin-bet-list--delete
+{
+    border-radius: 5px;
+    transition: 400ms;
+    padding: 7px;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 900;
+    margin-top: 50px;
+    width: 100%;
+    cursor: pointer;
+    color: #2D2D2F;
+    background-color: rgba(255, 159, 64, 1);
+    
+    border: 2px solid rgba(255, 159, 64, 1);
+}
 .admin-list-item-buttons--delete{
     margin: 5px;
     border-radius: 5px;
@@ -45,11 +59,132 @@
     cursor: pointer;
     color: #2D2D2F;
     background-color: rgba(255, 159, 64, 1);
-
+    
     border: 2px solid rgba(255, 159, 64, 1);
 }
 .admin-list-item-buttons--delete:hover{
     background-color: rgba(255, 159, 64, 0.2);
     color: #e1e1ea;
 
+}
+.admin-info-row {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 95%;
+    margin: auto;
+}
+.admin-info-row h2 {
+    background-color: #2D2D2F;
+    color: #e1e1ea;
+    border-radius: 10px;
+    padding: 10px;
+}
+.admin-info-graph 
+{
+    background-color: #2D2D2F;
+    color: #e1e1ea;
+    border-radius: 10px;
+    padding: 10px;
+    width: calc(95% - 20px);
+    margin: auto;
+}
+.admin-header 
+{
+    display: flex;
+    width: calc(95% - 20px);
+    margin: auto;
+    align-items:center;
+    color: #e1e1ea;
+    font-weight: 100;
+
+}
+.admin-button {
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: 100;
+    border-radius: 10px;
+    border: 1px solid #8C8A93;
+    padding: 10px;
+    color:#ea4545;
+    margin-right: 10px;
+    transition: 400ms;
+}
+.admin-button:hover {
+    background-color: #2d2d2f;
+}
+
+.admin-header h1 {
+    font-weight: 100;
+}
+.admin-fraudulent-list{
+    width: calc(95% - 20px);
+    margin: auto;
+}
+.admin-popup {
+    z-index: 200;
+    position: fixed;
+    top: -200%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #1d1d1f;
+    animation: slide-down 1s forwards;
+    padding: 20px;
+    border-radius: 10px;
+}
+.admin-bet-list {
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    padding: 10px;
+    overflow-y: auto;
+}
+.admin-bet-list-item {
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+    background-color: #2d2d2f;
+    padding: 12px;
+    border-radius: 10px;
+    width: 100%;
+    margin: 10px auto ;
+
+
+}
+.admin-bet-list-item__img {
+    width: 50px;
+    height: 50px;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+}
+.admin-list-item-amount-info {
+    display: flex;
+}
+@keyframes slide-down {
+    0% {
+        top: -200%;
+    }
+    100% {
+        top: 50%;
+    }
+}
+.multiplier-red {
+    color: rgb(220, 122, 122);
+}
+.multiplier-green
+{
+    color: rgb(129, 228, 129);
+
+}
+.admin-currency {
+    display: flex;
+    align-items: center;
+
+}
+.admin-popup-info {
+    width: 95%;
+    margin: auto;
+}
+.admin-popup-info h2 {
+    margin: 0;
 }

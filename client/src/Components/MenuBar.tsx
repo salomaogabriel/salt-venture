@@ -92,7 +92,9 @@ const MenuBar = ({ user, logOut }: Props) => {
           <hr className='log-out-divider' />
           <div onClick={logOutFromApp} className="log-out">
             <BiLogOut className="log-out-icon" />
-            <div className='log-out-text'>Log out</div>
+            <div className='log-out-text'>
+              Bets
+            </div>
           </div>
         </div>
         </div>
